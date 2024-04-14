@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-// Time Complexity :In general the space Complexity will be o(n) for this approach but since alphabets are only 26(constant) it is O(1)
+// Time Complexity :In general the space Complexity will be o(nL)  where n is no of strings and L is length of string
 // Space Complexity:since alphabets are only 26(constant) it is O(1)
 // Did this code successfully run on Leetcode :yes
 // Any problem you faced while coding this :
