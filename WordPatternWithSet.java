@@ -10,7 +10,7 @@
             if yes, then the string is already mapped to a character in the map
 
  Time Complexity: O(m) //length of String s is greater than the  pattern, and we are traversing through s while performing a split operation
- Space Complexity: O(1) //as the maximum range of a character can go upto 26 chars which is much less than the limit provided as the length of the string
+ Space Complexity: O(1) //as the maximum range of a characters can go upto 26 chars which is much less than the limit provided as the length of the string
  */
 
 class Solution {

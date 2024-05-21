@@ -10,7 +10,7 @@
  from the hash map as a string internal maps with each character in a hash mpa
 
  Time Complexity: O(nm)
- Space Complexity: O(1) //as the maximum range of a string can go upto 26 chars which is much less than the limit provided as the length of the string
+ Space Complexity: O(1) //as the maximum range of characters can go upto 26 chars which is much less than the limit provided as the length of the string
  */
 
 class GroupAnagramsWithDoubleKey {

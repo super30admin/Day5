@@ -14,7 +14,7 @@
      just increment counter by 1 // so it form a odd length palindrome
 
  Time Complexity: O(n)
- Space Complexity: O(1) //as the maximum range of a character can go upto 26 chars which is much less than the limit provided as the length of the string
+ Space Complexity: O(1) //as the maximum range of a characters can go upto 26 chars which is much less than the limit provided as the length of the string
 
  */
 
