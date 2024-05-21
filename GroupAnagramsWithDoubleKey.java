@@ -1,10 +1,13 @@
 /**
  Approach 2: Using Hashmap {key,value} -> {primeProduct, list of anagrams}
 
- Working: Iterating through the string array length finding the prime product of each string in array and checking if it contains key in the map, if yes, add the value to the corresponding list
+ Working: Iterating through the string array length finding the prime product of each string in array and checking if
+            it contains key in the map, if yes, add the value to the corresponding list
 
- Why prime product:
- If we are using the double/integer value, the retrieve from the hash map would be faster than the retrival of a string from the hash map as a string internal maps with each character in a hash mpa
+ Why prime product: Mathematically product of prime numbers ia always unique
+
+ Additionally, If we are using the double/integer value, the retrieve from the hash map would be faster than the retrival of a string
+ from the hash map as a string internal maps with each character in a hash mpa
 
  Time Complexity: O(nm)
  Space Complexity: O(1) //as the maximum range of a string can go upto 26 chars which is much less than the limit provided as the length of the string

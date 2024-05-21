@@ -1,11 +1,9 @@
-public class WordPatternWithSet {
-}
 
 /**
  Approach 2: Using hash map and set, 1 {key->char, value->string}
 
  Working:
-     if the map contains the character, the we
+     if the map contains the character
         check if the value in the map is equal to current value, if not ret false
      else adding the character and string value in hash map,
         while adding checking if the set contains the string value,
