@@ -1,0 +1,40 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        '''
+        check len for isometric
+         then map the s and t according to ASCII if not mapped
+        if s and t not equal return false
+        '''
+        # Check if the lengths
+        if len(s) != len(t):
+            return False  
+        
+        # Initialize mapping arrays for both strings with size 256 (for ASCII characters)
+        sMap = [-1] * 256
+        tMap = [-1] * 256
+        
+      
+        for i in range(len(s)):
+            sChar = ord(s[i])  # Get ASCII value of the character in s
+            tChar = ord(t[i])  # Get ASCII value of the character in t
+            
+            # Check if there is already a mapping for sChar in sMap
+            if sMap[sChar] != -1:
+                # If there is a mapping, it must match the current character in t
+                if sMap[sChar] != tChar:
+                    return False  # If it doesn't match, s and t are not isomorphic
+            else:
+                # If there is no mapping, set the mapping of sChar to tChar
+                sMap[sChar] = tChar
+            
+            # Check if there is already a mapping for tChar in tMap
+            if tMap[tChar] != -1:
+                # If there is a mapping, it must match the current character in s
+                if tMap[tChar] != sChar:
+                    return False  
+            else:
+                # If there is no mapping, set the mapping of tChar to sChar
+                tMap[tChar] = sChar
+    
+        return True
+        
