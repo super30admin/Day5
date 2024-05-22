@@ -16,7 +16,7 @@ Any problem you faced while coding this : No
 
 Your code here along with comments explaining your approach:
 Two approaches: 
-1. HashMap - O(nklogk) where for n strings we are apply sorting that takes klogk where k is length of the string. Also retrieval in hashmap for strings is not O(1) but actually O(m) where m is length of string. 
+1. HashMap - O(nklogk) where for n strings we are apply sorting that takes klogk where k is length of the string. 
 The approach is we iterate over the input and sort the word and join them back and check if it exists in hash_map if yes, we append the current word to it else we initialize new list and at the end we return values of hash_map.
 2. Ascii value sum/product doesn't work because same sum/product can be formed with different chars so we go with math rule i.e., product of prime numbers are unique. Also while taking product of prime numbers in java make sure we take double since integer overflow might happen.
 The approach is we iterate over the input and find the prime product of the word and check if it exists in hash_map if yes we append the word to this values list else we assign a new list to this product and we return values of this hash_map.
