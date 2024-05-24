@@ -1,5 +1,6 @@
 # Time Complexity
-# O(N^2)
+# O(N*L)
+# where N is the number of words and L is the length of each word.
 # Space Complexity
 # O(n)
 
