@@ -1,0 +1,51 @@
+// Time Complexity : O(N)
+// Space Complexity : O(N)
+// Did this code successfully run on Leetcode : N/A
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+Approach: 1. Use arrayReader API to fetch element and increase high by 2  for O(logN) complexity
+
+Solution:
+
+import java.util.HashMap;
+
+public class StringPattern {
+	
+	public static void isIsomorphic(String pattern, String str) {
+		String[] s = str.split(" ");
+		if(s.length != pattern.length()) {
+			System.out.println(false);
+		}
+		
+		HashMap<Character, String> charMap = new HashMap<>();
+		for(int i = 0 ;i < s.length ; i++) {
+			char c = pattern.charAt(i);
+			String curr = s[i];
+			
+			if(charMap.containsKey(c)) {
+				if(!charMap.get(c).equals(curr)) {
+					System.out.println(false);
+				}
+			}else if(charMap.values().contains(curr)) {  //checks if key is not present but value is present
+					System.out.println("value before key: " + false);
+					break;
+			}else {
+				charMap.put(c, curr);
+			}
+		}
+		//if no issues found in matching pattern
+		System.out.println(true);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String pattern = "abba";
+		String str = "dog cat cat dog";
+		
+		isIsomorphic(pattern,str);
+		
+	}
+
+}

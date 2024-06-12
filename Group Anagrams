@@ -1,0 +1,36 @@
+// Time Complexity : O(n*k^2logk)
+// Space Complexity : O(N) -> where N is the length of array
+// Did this code successfully run on Leetcode : Yes, with poor time & space complecity
+// Any problem you faced while coding this : Need to solve using Optimized approaach
+
+
+// Your code here along with comments explaining your approach
+Approach: 1. Sort each string and use it as key in HashMap -> Match sorted string with key and add to the List of values if a match is found. So basically grouping all similar patterns to a matching sorted key.
+
+SOlution:
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        if(strs == null || strs.length==0){
+            return new ArrayList<List<String>>();
+        }
+        
+        HashMap<String, List<String>> hmap = new HashMap<>();
+        
+        for(int i = 0 ; i < strs.length ; i++){
+
+            char[] ch = strs[i].toCharArray();
+            Arrays.sort(ch);
+            String sorted = String.valueOf(ch);
+            if(!hmap.containsKey(sorted)){
+                hmap.put(sorted, new ArrayList<>());
+            }
+                hmap.get(sorted).add(strs[i]);
+  
+        }
+        System.out.println(hmap);
+        return new ArrayList<>(hmap.values());
+        
+    }
+}

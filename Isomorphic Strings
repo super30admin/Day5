@@ -1,0 +1,39 @@
+// Time Complexity : O(N)
+// Space Complexity : O(N) -> Additional DS HAshMap used to solve the problem
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Need to solve using CharacterArray Approach + Had to lookup for some hints
+
+
+// Your code here along with comments explaining your approach
+Approach: 1. Using two HashMaps two compare their inverted key value pair
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length() != t.length()){
+            return false;
+        }  
+        HashMap<Character,Character> sMap = new HashMap<>();
+        HashMap<Character,Character> tMap = new HashMap<>();
+        
+//        char[] sArray = new char[100];
+//        char[] tArray = new char[100];
+               
+        for(int i = 0 ; i < s.length() ; i++){
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i);
+            
+            if(sMap.containsKey(sChar)){
+                if(sMap.get(sChar) != tChar){
+                    return false;
+                }
+            }else{                
+                if(tMap.containsKey(tChar)){
+                    return false;
+                }
+                sMap.put(sChar,tChar);
+                tMap.put(tChar,sChar);
+            }
+        }  
+               return true;
+    }
+}
+
