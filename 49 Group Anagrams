@@ -1,0 +1,18 @@
+// Time Complexity : O(N*k log k)  k->length of string
+// Space Complexity :O(N*k)
+// Did this code successfully run on Leetcode :YES
+// Any problem you faced while coding this :NO
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String,List<String>> a=new HashMap<>();
+        for(String s:strs){
+            char []str2arr=s.toCharArray();
+            Arrays.sort(str2arr);
+            String sorted=String.valueOf(str2arr);
+            if(!a.containsKey(sorted))
+                a.put(sorted, new ArrayList<>());
+            a.get(sorted).add(s);
+        }
+        return new ArrayList<>(a.values());
+    }
+}
