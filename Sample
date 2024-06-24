@@ -1,0 +1,104 @@
+#############49. Group Anagrams####################
+
+// Time Complexity : N
+// Space Complexity : N
+// Did this code successfully run on Leetcode : YES
+// Any problem you faced while coding this : NA
+
+
+// Your code here along with comments explaining your approach in three sentences only
+
+// for each string I will sort it alphabetically and check if it present in dict or not if it is not present I will use sorted string as key and populate its position  in strs as value. So now all the string which has same character will be under 1 key along with positions which I will read and put it in 1 list
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        dict1={}    #dict initialised
+        list2=[]
+        for c,i in enumerate(strs):	# will give position and word
+            #print(c,i)
+            t=''.join(sorted(i))	# sorting the character
+            if t not in dict1:		#check if exist in dict
+                #print("in if",t)
+                dict1[t]=[c]
+            else:
+                #print("in else")
+                dict1[t].append(c)
+        #print(dict1)
+        for i in dict1.values():	#once dict is ready will read it and populate final list
+            list1=[]
+            for j in i:
+                #print(strs[j])
+                list1.append(strs[j])
+            #print(list1)
+            list2.append(list1)
+        return list2
+
+
+        
+
+#############205. Isomorphic Strings####################
+
+
+// Time Complexity : N
+// Space Complexity : N
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : NA
+
+
+// Your code here along with comments explaining your approach in three sentences only
+
+// in this code also I will use dictionary, I will take 1st element from 2 string and map them in dictionary, so when 1st element is fetched form both string considering s as master string I will check if 1st element from S is present in dict if it is present I will check whether the value corresponding to it same as 1st letter from 't'. If it is not matching return FALSE or else move to next string. In case any key is not present it will be added in dict
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        dict1={}				# initialise dict
+        for i in range(len(s)):
+            t1,t2=s[i],t[i]			# 1st element for both string
+            print(t1,t2)
+            if t1 not in dict1:			#check if not present in dict
+                if t2 in dict1.values():
+                    return False
+                else:
+                    dict1[t1]=t2
+                print('if',dict1)
+            else:				# present in dict
+                #print(dict1)
+                if dict1[t1]!=t2:
+                    print('else 2',dict1)
+                    return False
+        return True
+        
+
+##############290. Word Pattern########################
+
+
+
+// Time Complexity : N 
+// Space Complexity : N
+// Did this code successfully run on Leetcode : YES
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach in three sentences only
+
+// this code is also same approach as "Isomorphic Strings", here instead of second string there are words which I have moved to list
+
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        l1=s.split(' ')				# converted string to list
+        dict1={}
+        if len(pattern)!=len(l1):		# additional condition to check if the length matches
+            return False
+        for i in range(len(pattern)):		# same as above
+            t1,t2=pattern[i],l1[i]
+            print(t1,t2)
+            if t1 not in dict1:
+                if t2 in dict1.values():
+                    return False
+                else:
+                    dict1[t1]=t2
+            else:
+                if dict1[t1]!=t2:
+                    return False
+        return True
+        
