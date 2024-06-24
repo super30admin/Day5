@@ -1,0 +1,17 @@
+//time complexity will be O(nklogk) where n are the number of words in the array and klogk is the time taken for sorting the string where k is the number of characters in each string.
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+        for(String s: strs){
+            char charArray[]= s.toCharArray();
+            Arrays.sort(charArray);
+            String sorted_string= new String(charArray);
+            if(!map.containsKey(sorted_string)){
+                map.put(sorted_string, new LinkedList<String>());
+            }
+            map.get(sorted_string).add(s);
+        }
+        return new LinkedList<>(map.values());
+        
+    }
+}
