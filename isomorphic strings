@@ -1,0 +1,34 @@
+// Tc- O(n) - iterate through the string SC- O(1)- contant space as we require at max hasmap of 256 as there are 256 ascii characters
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length()){ // simple sanity check
+            return false; 
+        }
+
+        HashMap<Character, Character> charMap= new HashMap<>();
+
+        for(int i=0;i<s.length();i++){
+            char char_s = s.charAt(i);
+            char char_t= t.charAt(i);
+
+            if(!charMap.containsKey(char_s)){
+                if(!charMap.containsValue(char_t))
+                    charMap.put(char_s,char_t);
+                else
+                    return false;
+            }
+            
+            else{
+                char mappedchar= charMap.get(char_s);
+                if(mappedchar!=char_t)
+                return false;
+                }
+
+            }
+            return true;
+           
+        }
+         
+        
+    }
+
