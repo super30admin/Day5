@@ -18,6 +18,26 @@ Note:
 All inputs will be in lowercase.
 The order of your output does not matter.
 
+class Solution {
+    Map<String, List<String>> mp = new HashMap<>();
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        int n = strs.length;
+        for (int i = 0; i < n; i++) {
+            char[] ch = strs[i].toCharArray();
+            Arrays.sort(ch); // Sort the character array
+
+            // Use sorted character array as key directly
+            if (!mp.containsKey(new String(ch))) {
+                mp.put(new String(ch), new ArrayList<>());
+            }
+            mp.get(new String(ch)).add(strs[i]);
+        }
+        return new ArrayList<>(mp.values());
+    }
+}
+
+
 ## Problem 2:
 Given two strings s and t, determine if they are isomorphic.
 Two strings are isomorphic if the characters in s can be replaced to get t.
@@ -36,6 +56,39 @@ Input: s = "paper", t = "title"
 Output: true
 Note:
 You may assume both s and t have the same length.
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character, Character> mp = new HashMap<>();
+        Map<Character, Character> mp2 = new HashMap<>();
+        
+        char[] s1 = s.toCharArray();
+        char[] t1 = t.toCharArray();
+        
+        int i = 0;
+        int n = s.length();
+        for (i=0;i<n;i++){
+            if (!mp.containsKey(s1[i]))
+                mp.put(s1[i], t1[i]);
+            else{
+                if (t1[i] != mp.get(s1[i])){
+                    System.out.println(s1[i] + "asfd" + mp.get(s1[i]));
+                    return false;
+                }    
+            }
+
+            if (!mp2.containsKey(t1[i]))
+                mp2.put(t1[i], s1[i]);
+            else{
+                if (s1[i] != mp2.get(t1[i])){
+                    System.out.println(s1[i] + "asfd" + mp.get(s1[i]));
+                    return false;
+                }    
+            }
+        }
+        return true;
+    }
+}
 
 ## Problem 3:
 Given a pattern and a string str, find if str follows the same pattern.
@@ -58,3 +111,21 @@ Input: pattern = "abba", str = "dog dog dog dog"
 Output: false
 Notes:
 You may assume pattern contains only lowercase letters, and str contains lowercase letters that may be separated by a single space.
+
+Code not giving correct answer please help
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String[] splited = s.split("\\s+");
+        HashMap<Character, String> mp = new HashMap<>();
+        char[] p = pattern.toCharArray();
+        for(int i=0;i<p.length;i++){
+            if (!mp.containsKey(p[i])){
+                mp.put(p[i], splited[i]);
+            }
+            else if(mp.get(p[i])!= splited[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
