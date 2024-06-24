@@ -1,0 +1,33 @@
+// TC- O(N) AND SC - O(1) 
+import java.util.HashMap;
+//similar approach as the isomorphic solution
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        HashMap<Character, String> map = new HashMap<>();
+
+        // Split the string `s` into an array of words
+        String[] wordArray = s.split(" ");
+        
+        // Check if the lengths of the pattern and the word array match
+        if (pattern.length() != wordArray.length) {
+            return false;
+        }
+
+        for (int i = 0; i < pattern.length(); i++) {
+            char charPattern = pattern.charAt(i);
+            String word = wordArray[i];
+
+            if (!map.containsKey(charPattern)) {
+                if (map.containsValue(word)) {
+                    return false; // If the word is already mapped to another character
+                }
+                map.put(charPattern, word);
+            } else {
+                if (!map.get(charPattern).equals(word)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
