@@ -15,10 +15,10 @@ var groupAnagrams = function(strs) {
         for(let j=0; j<strs[i].length; j++){
             mul*= collisionPrime[strs[i][j]];
         }
-        if(!(sum in anagram))
-            anagram[sum] = [strs[i]];
+        if(!(mul in anagram))
+            anagram[mul] = [strs[i]];
         else {
-            anagram[sum].push(strs[i])
+            anagram[mul].push(strs[i])
         }
     }
     return Object.values(anagram);
