@@ -22,7 +22,7 @@ bool checkIsomorphic(string s1, string s2) {
     unordered_map<char, char> target;
 
     for(int i = 0; i <= s1.length(); i++) {
-        if (start[s1[i] && target[s1[i]] != s2[i]]){
+        if (start[s1[i]] && target[s1[i]] != s2[i]){
             return false;
         }
 
