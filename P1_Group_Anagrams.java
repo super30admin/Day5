@@ -1,6 +1,7 @@
 /*
  * Time complexity: O(n log l)
  * Space complexity: O(n)
+ * Solved on leetcode? yes
  */
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
