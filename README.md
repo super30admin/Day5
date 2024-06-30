@@ -90,6 +90,36 @@ class Solution {
     }
 }
 
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character, Character> mp = new HashMap<>();
+        HashSet<Character> tSet = new HashSet<>();
+        
+        if (s.length() != t.length())
+            return false;
+
+        int i = 0;
+        int n = s.length();
+        for (i=0;i<n;i++){
+            char s1 = s.charAt(i);
+            char t1 = t.charAt(i);
+            if (mp.containsKey(s1))
+            {
+                if ( mp.get(s1) != t1)
+                    return false;
+            }
+            else{
+                if (tSet.contains(t1))
+                    return false;
+
+                mp.put(s1, t1);
+                tSet.add(t1);   
+            }
+        }
+        return true;
+    }
+}
+
 ## Problem 3:
 Given a pattern and a string str, find if str follows the same pattern.
 Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str.
@@ -112,19 +142,31 @@ Output: false
 Notes:
 You may assume pattern contains only lowercase letters, and str contains lowercase letters that may be separated by a single space.
 
-Code not giving correct answer please help
 class Solution {
     public boolean wordPattern(String pattern, String s) {
         String[] splited = s.split("\\s+");
         HashMap<Character, String> mp = new HashMap<>();
+        HashMap<String, Character> mp2 = new HashMap<>();
+        
         char[] p = pattern.toCharArray();
+
+        if (splited.length != pattern.length())
+            return false;
+
         for(int i=0;i<p.length;i++){
-            if (!mp.containsKey(p[i])){
+            if (mp.containsKey(p[i])){
+                if (!mp.get(p[i]).equals(splited[i]))
+                    return false;
+            }
+            else 
                 mp.put(p[i], splited[i]);
+
+            if (mp2.containsKey(splited[i])){
+                if (mp2.get(splited[i])!=p[i])
+                    return false;
             }
-            else if(mp.get(p[i])!= splited[i]){
-                return false;
-            }
+            else 
+                mp2.put(splited[i], p[i]);
         }
         return true;
     }
