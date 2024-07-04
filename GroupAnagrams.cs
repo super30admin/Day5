@@ -1,4 +1,4 @@
-//TC:O(N)
+//TC:O(N * M)
 //SC:O(N)
 public class Solution {
     public IList<IList<string>> GroupAnagrams(string[] strs) {
