@@ -1,0 +1,92 @@
+#Problem 1
+
+We need to get the prime product of all the anagrams because prime products can't have same values with
+other numbers. Then we need to use dictionary to store each word with its same prime products and then 
+retun that.
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        if strs == None or len(strs) == 0:
+            return []
+        
+        myDict = {}
+
+        for st in strs:
+            prime = self.getPrimeProduct(st)
+            if prime not in myDict:
+                myDict[prime] = []
+                myDict[prime].append(st)
+            else:
+                myDict[prime].append(st)
+        
+        
+        return myDict.values()
+
+    def getPrimeProduct(self, st: str) -> int:
+        primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103]
+
+        product = 1
+        for i in st:
+            product = product * primes[ord(i) - ord('a')]
+
+        return product 
+
+#Problem 2
+
+We need to have a one to one mapping of each character from s and t, so use two hashmaps to make sure that
+mapping happens. If when iterating throught s and t they don't map to to the same letter then return False
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if s == None or len(s) == 0 or t == None or len(s) == 0:
+            return False
+    
+
+        sMap = {}
+        tMap = {}
+
+        for i in range(len(s)):
+            sChar = s[i]
+            tChar = t[i]
+
+            if sChar in sMap:
+                if sMap[sChar] != tChar:
+                    return False
+            else:
+                sMap[sChar] = tChar
+            if tChar in tMap:
+                if tMap[tChar] != sChar:
+                    return False
+            else:
+                tMap[tChar] = sChar
+        return True
+
+
+#Problem 3
+
+Similar approach to problem 2
+
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        lst = s.split(" ")
+        if len(pattern) !=  len(lst):
+            return False
+        
+        charMap = {}
+        wordMap = {}
+
+        for i in range(len(pattern)):
+            sChar = pattern[i]
+            word = lst[i]
+
+            if sChar in charMap:
+                if charMap[sChar] != word:
+                    return False
+            else:
+                charMap[sChar] = word
+            if word in wordMap:
+                if wordMap[word] != sChar:
+                    return False
+            else:
+                wordMap[word] = sChar
+        return True        
