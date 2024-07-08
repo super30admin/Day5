@@ -1,0 +1,115 @@
+Hashing-1
+
+
+Problem 1:  Group Anagrams
+
+Time Complexity : O(N K logK)
+Space Complexity :O(N K)
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        if strs == None or len(strs)== 0:
+            return []
+        
+        sMap = {}
+        for i in strs:
+            sortedStrs = tuple(sorted(i))  
+            if sortedStrs in sMap:
+                sMap[sortedStrs].append(i)
+            else:
+                sMap[sortedStrs] = [i]
+
+        return sMap.values()
+
+
+Problem 2: Isomorphic Strings
+
+solution 1:
+
+Time Complexity : O(N)
+Space Complexity :O(1)
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if len(s)!=len(t):
+            return False
+        sMap = {}
+        tMap = {}
+        for i in range(len(s)):
+            sChar = s[i]
+            tChar = t[i]
+            if sChar in sMap:
+                if sMap[sChar] != tChar:
+                    return False
+            else:
+                sMap[sChar] = tChar
+            
+            if tChar in tMap:
+                if tMap[tChar] != sChar:
+                    return False
+            else:
+                tMap[tChar] = sChar
+
+        return True
+
+
+
+solution 2:
+
+
+Time Complexity : O(N)
+Space Complexity :O(1)
+
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if len(s)!=len(t):
+            return False
+        sMap = {}
+        tSet = set()
+        for i in range(len(s)):
+            sChar = s[i]
+            tChar = t[i]
+            if sChar in sMap:
+                if sMap[sChar] != tChar:
+                    return False
+            else:
+                if tChar in tSet:
+                    return False
+                sMap[sChar] = tChar
+                tSet.add(tChar)
+
+        return True
+
+
+
+Problem 3: Word Pattern
+
+Time Complexity : O(N+M)
+Space Complexity :O(N+M)
+
+
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        arr = s.split(" ")
+        if len(pattern) != len(arr):
+            return False
+
+        sMap ={}
+        tMap={}
+        for i in range(len(pattern)):
+            sChar= pattern[i]
+            tChar = arr[i]
+            if sChar in sMap:
+                if sMap[sChar] != tChar:
+                    return False
+            else:
+                sMap[sChar]= tChar
+            
+            if tChar in tMap:
+                if tMap[tChar] != sChar:
+                    return False
+            else:
+                tMap[tChar]= sChar
+        
+        return True
