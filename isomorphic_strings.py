@@ -25,3 +25,29 @@ class Solution:
             else:
                 tHash[tChar] = sChar
         return True
+    
+
+    ##### Using Hasmap and Hashset
+
+    class Solution:
+        def isIsomorphic(self, s: str, t: str) -> bool:
+            sHash={}
+            tHash={}
+            hashset = set()
+
+            if len(s) != len(t):
+                return False
+
+            for sChar,tChar in zip(s,t):
+                if sChar in sHash:
+                    if sHash[sChar] != tChar:
+                        return False
+                else:
+                    if tChar in hashset:
+                        return False
+                    else:
+                        sHash[sChar] = tChar
+                        hashset.add(tChar)
+
+
+            return True
