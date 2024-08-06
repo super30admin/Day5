@@ -18,6 +18,27 @@ Note:
 All inputs will be in lowercase.
 The order of your output does not matter.
 
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> result=new ArrayList<>();
+        HashMap<String,List<String>> resMap=new HashMap<>();
+        for(String s:strs){
+            char[] c=s.toCharArray();
+            Arrays.sort(c);
+            String sorted=String.valueOf(c);
+            if(!resMap.containsKey(sorted))
+            {
+                resMap.put(sorted,new ArrayList<>());
+            }
+            resMap.get(sorted).add(s);
+        }
+        for(Map.Entry<String,List<String>> entry:resMap.entrySet()){
+            result.add(entry.getValue());
+        }
+        return result;
+    }
+}
+
 ## Problem 2:
 Given two strings s and t, determine if they are isomorphic.
 Two strings are isomorphic if the characters in s can be replaced to get t.
@@ -36,6 +57,31 @@ Input: s = "paper", t = "title"
 Output: true
 Note:
 You may assume both s and t have the same length.
+
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        
+     HashMap<Character,Character> sMap=new HashMap<>();
+        HashMap<Character,Character> tMap=new HashMap<>();
+        int slen=s.length();
+        int tlen=t.length();
+        if(slen!=tlen)
+            return false;
+        for(int i=0;i<slen;i++){
+            if(!sMap.containsKey(s.charAt(i)))
+                sMap.put(s.charAt(i),t.charAt(i));
+            if(sMap.get(s.charAt(i))!=t.charAt(i))
+                return false;
+            if(!tMap.containsKey(t.charAt(i)))
+                tMap.put(t.charAt(i),s.charAt(i));
+            if(tMap.get(t.charAt(i))!=s.charAt(i))
+                return false;
+        
+        }
+        return true;
+    }
+}
 
 ## Problem 3:
 Given a pattern and a string str, find if str follows the same pattern.
