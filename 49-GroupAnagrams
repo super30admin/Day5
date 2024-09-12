@@ -1,0 +1,18 @@
+class Solution:
+    def groupAnagrams(self, arrs: List[str]) -> List[List[str]]:
+        hashmap = {}
+        
+        for word in arrs:
+            sortedWord = "".join(sorted(word))
+            if sortedWord not in hashmap:
+                hashmap[sortedWord] = [word]
+            else:
+                
+                hashmap[sortedWord].append(word)
+
+        return hashmap.values()
+
+    # Complexities
+    # // n = len(strs)    // m = len of string in strs
+    # time complexity = O(nm.log m)       
+    # space complexity = O(nlog n)        
