@@ -1,0 +1,63 @@
+// Time Complexity : O(n) for loop
+// Space Complexity : O(n) - hashmap
+// Did this code successfully run on Leetcode : Approcah -1 yes but not approach - 2
+// Any problem you faced while coding this :
+
+
+// Your code here along with comments explaining your approach
+Approach one - nk log k where k is avg length of each word
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        HashMap<String, ArrayList<String>> map = new HashMap<>();
+       // String[] sortedArray = new String [strs.length];
+        
+        for(int i=0; i<strs.length; i++)
+        {
+            char[] arr = strs[i].toCharArray();
+            Arrays.sort(arr);
+            String sorted = new String(arr);
+           // System.out.println(sorted);
+            if(!map.containsKey(sorted))
+            {
+                map.put(sorted, new ArrayList<>());
+            }
+            map.get(sorted).add(strs[i]);
+            
+        }
+     return new ArrayList<>(map.values());
+    }
+}
+
+Approach two 
+class Solution {
+     private long findPrime(String s)
+        {
+            int[] prime = {2,3,5,7,9,11,13,17,19,22,23,29,31,37,41,43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107};
+            long value =1;
+            for(int i=0; i<s.length(); i++)
+            {
+                char c = s.charAt(i);
+                value = value * prime[c - 'a'];
+            }
+            return value;
+        }
+    
+    public List<List<String>> groupAnagrams(String[] strs) {
+         
+        HashMap<Long, ArrayList<String>> map = new HashMap<>();
+        for(String str: strs)
+        {
+            long value = findPrime(str);
+            if(!map.containsKey(value))
+            {
+                map.put(value, new ArrayList<>());
+            }
+            map.get(value).add(str);
+            
+        }
+      
+        return new ArrayList<>(map.values());
+    }
+}

@@ -1,0 +1,115 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        HashMap<Double, List<String>> map = new HashMap<>();
+        List<List<String>> resultList = new ArrayList<>();
+        for(String s: strs)
+        {
+            double key = ascending(s);
+            if(map.containsKey(key))
+            {
+                map.get(key).add(s);
+            }
+            else
+            {
+                ArrayList<String> arr = new ArrayList<>();
+                arr.add(s);
+                map.put(key, arr);
+            }
+        }
+        
+        for(double s:map.keySet())
+        {
+            resultList.add(map.get(s));
+            //System.out.println(map.get(s));
+        } 
+        
+        return resultList;
+    }
+    
+    private double ascending(String s)
+    {
+        int[] value = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101};
+        double sum =1;
+        //System.out.println(" s = "+s.length()+" input = "+input.length);
+        for(int i =0; i<s.length(); i++)
+        {
+            char c = s.charAt(i);
+            sum *= value[c-'a'];
+        }
+        //System.out.println("---------");
+        return sum;
+    }
+}
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        
+        if(s.length() != t.length())
+        {
+            return false;
+        }
+        String[] input1 = t1.split(" ");
+        HashMap<Character, String> Smap = new HashMap<>();
+        HashMap<Character, String> Tmap = new HashMap<>();
+        
+        for(int i=0; i<s.length(); i++)
+        {
+            Character c = s.charAt(i);
+            Character d = t.charAt(i);
+            //System.out.println("c = "+c+" d = "+d);
+            // System.out.println("map.get(c) "+map.get(c)+"  map.get(d) "+map.get(d));
+            if(!Smap.containsKey(c) && !Tmap.containsKey(d))
+            {
+               // System.out.println("c and d not present so put ");
+                Smap.put(c,d);
+                Tmap.put(d,c);
+            }
+            // System.out.pritnln("map.get(c) "+map.get(c)+"  map.get(d) "+map.get);
+            else if(Smap.get(c) != d && Tmap.get(d) != c)
+            {
+                return false;
+            }
+            
+        }
+      
+        return true;
+        
+    }
+}
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        
+        String[] str = s.split(" ");
+        
+        if(pattern.length() != str.length)
+            return false;
+        
+        HashSet<String> set = new HashSet<>();
+        HashMap<Character,String> map = new HashMap<>();
+        
+        for(int i=0; i<pattern.length(); i++)
+        {
+            String word = str[i];
+            char letter = pattern.charAt(i);
+            
+            if(map.containsKey(letter))
+            {
+                if(!word.equals(map.get(letter)))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if(set.contains(word))
+                {
+                    return false;
+                }
+                set.add(word);
+                map.put(letter, word);
+            }
+        }
+        return true;
+            
+    }
+}

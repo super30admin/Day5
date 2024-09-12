@@ -1,0 +1,45 @@
+// Time Complexity :O(nk) where n is length of pattern and k is size of S array
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this :
+similar to prob 2
+
+// Your code here along with comments explaining your approach
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        if( pattern == null || s.isEmpty())
+            return false;
+         
+       String [] arrayString = s.split(" ");
+        if(pattern.length() != arrayString.length)
+            return false;
+        
+        HashMap<Character, String> map_patter_s = new HashMap<>();
+        HashSet<String> set_s = new HashSet<>();
+        for(int i=0; i<arrayString.length; i++)
+        {
+            String oneWord = arrayString[i];
+            Character oneChar = pattern.charAt(i);
+            
+            if(map_patter_s.containsKey(oneChar))
+            {
+                if(!map_patter_s.get(oneChar).equals(oneWord))
+                {
+                    return false;
+                }
+            }
+            else if(set_s.contains(oneWord))
+            {
+                return false;
+            }
+                
+            else
+            {
+                map_patter_s.put(oneChar, oneWord);
+                set_s.add(oneWord);
+            }
+        }
+        
+        return true;
+    }
+}
