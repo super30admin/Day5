@@ -1,0 +1,29 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        s_list = list(s.split(" "))
+        
+        if s_list is None or pattern is None:
+            return False
+        
+        if len(s_list)!= len(pattern):
+            return False
+        
+        Smap = {}
+        Pmap = {}
+        
+        for i in range(len(pattern)):
+            c = pattern[i]
+            word = s_list[i]
+            if c not in Pmap.keys():
+                Pmap[c] = word
+            
+            elif Pmap[c]!=word:
+                return False
+            
+            if word not in Smap.keys():
+                Smap[word] = c
+            
+            elif Smap[word]!=c:
+                return False
+            
+        return True

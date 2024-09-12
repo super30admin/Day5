@@ -1,0 +1,29 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if s is None or t is None:
+            return False
+        
+        smap = {}
+        tmap = {}
+        
+        if len(s)!=len(t):
+            return False
+        
+        for i in range(len(s)):
+            schar = s[i]
+            tchar = t[i]
+            if schar not in smap.keys():
+                smap[schar] = tchar
+            
+            elif smap[schar]!=tchar:
+                return False
+            
+            if tchar not in tmap.keys():
+                tmap[tchar] = schar
+            
+            elif tmap[tchar]!=schar:
+                return False
+            
+        return True
+            
+        
