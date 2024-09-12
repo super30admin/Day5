@@ -1,0 +1,28 @@
+//Time Comp: o(n^2); we are iterating though each element in the array once - O(n)
+//we are searching for a value in Hashmap which is also O(n)
+
+//Space Comp: O(n)
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        
+        HashMap map = new HashMap();
+        String[] words= str.split(" "); 
+        if(pattern.length() != words.length) return false;
+        
+        for(int i=0; i < words.length; i++)
+        {
+          char c = pattern.charAt(i);
+            if(map.containsKey(c)){
+                if(!map.get(c).equals(words[i]))
+                    return false;
+            }else{
+                if(map.containsValue(words[i]))
+                    return false;
+                map.put(c, words[i]);
+            }    
+        }
+        return true;
+}
+}
+    
