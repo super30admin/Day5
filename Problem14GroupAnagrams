@@ -1,0 +1,18 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode :
+// Any problem you faced while coding this :
+
+
+// Your code here along with comments explaining your approach
+
+ const map = {};
+
+  for (let str of strs) {
+    let charFrequency = new Array(26).fill(0); // We will count the chars in the string
+    for (let char of str) charFrequency[char.charCodeAt(0) - 'a'.charCodeAt(0)]++; // Build up charFrequency Array
+    if (!map[charFrequency]) map[charFrequency] = [];
+    map[charFrequency].push(str);
+  }
+
+  return Object.values(map);
