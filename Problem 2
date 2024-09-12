@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        HashMap<Character , Character> sToTMap = new HashMap<>();
+        HashMap<Character , Character> tToSMap = new HashMap<>();
+        if(s.length() != t.length()) // not isomorphic if lengths are different
+            return false;
+        for(int i = 0; i< s.length() ; i++){
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i);
+           
+            // s --> t compare
+            if(sToTMap.containsKey(sChar) && sToTMap.get(sChar) != tChar)
+                return false;
+            else{
+                sToTMap.put(sChar,tChar);
+            }
+            
+            // t --> s compare 
+            if(tToSMap.containsKey(tChar) && tToSMap.get(tChar) != sChar)
+                return false;
+            else{
+                tToSMap.put(tChar,sChar);
+            }
+            
+            
+        } return true;
+        
+    }
+}
+// Time Complexity - O(n) , Space Complexity - O(n)
