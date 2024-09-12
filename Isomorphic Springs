@@ -1,0 +1,21 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        l_m = {}
+        r_m = {}
+        
+        for i in range(len(s)):
+            l_s = s[i]
+            l_t = t[i]
+            
+            if l_s in l_m and l_m[l_s] != l_t:
+                return False
+            if l_t in r_m and r_m[l_t] != l_s:
+                return False
+            
+            l_m[l_s] = l_t
+            r_m[l_t] = l_s
+        return True
+    
+# Time Complexity: O(nlogn)
+# Space Complexity: O(n)
+# Successfully implemented on Leetcode

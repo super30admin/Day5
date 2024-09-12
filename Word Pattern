@@ -1,0 +1,17 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        l = s.split(" ")
+        if len(l) != len(pattern):
+            return False
+        d = {}
+        for i in range(len(pattern)):
+            if pattern[i] in d and d[pattern[i]] != l[i]:
+                return False
+            elif pattern[i] not in d and l[i] in d.values():
+                return False
+            d[pattern[i]] = l[i]
+        return True
+    
+# Time Complexity: O(nlog(n))
+# Space Complexity: O(n)    
+# Successfully implemented on Leetcode

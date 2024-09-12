@@ -1,0 +1,14 @@
+class Solution:
+    def groupAnagrams(self, li):
+        ana = {}
+        for word in li:
+            sortedWord = ''.join(sorted(word))
+            if sortedWord in ana:
+                ana[sortedWord] += [word]
+            else:
+                ana[sortedWord] = [word]
+        return [ana[i] for i in ana]
+    
+# Time Complexity: O(nlog(n))
+# Space Complexity: O(n)      
+# Successfully implemented on Leetcode
