@@ -1,0 +1,26 @@
+// Time Complexity :O(nm)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes
+
+
+class Solution {
+    func groupAnagrams(_ strs: [String]) -> [[String]] {
+        
+        var allValues = [String:[String]]()
+
+        for s in strs {
+            
+            let key = self.key(for: s)
+            
+            var values = allValues[key] ?? []
+            values.append(s)
+            allValues[key] = values
+        }
+        
+        return allValues.map { $0.value }
+    }    
+    
+    func key(for s: String) -> String {
+        return String(Array(s).sorted()) 
+    }
+}

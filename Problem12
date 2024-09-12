@@ -1,0 +1,31 @@
+// Time Complexity : O(log n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Brute force : Check each character in s and map with each occurrence of that character in t. (Complexity O(n*n))
+// Efficient solution : Store mappings of each visited character
+
+class Solution {
+    func isIsomorphic(_ s: String, _ t: String) -> Bool {
+        var hash = [Character:Character]()
+        var map = Set<Character>()
+        var s = Array(s.characters)
+        var t = Array(t.characters)
+        for i in s.indices.suffix(from: 0) {
+            if let r = hash[s[i]] {
+                if r != t[i] {
+                    return false
+                }
+            } else {
+                if map.contains(t[i]) {
+                    return false
+                }
+                hash[s[i]] = t[i]
+                map.insert(t[i])
+            }
+        }
+        return true
+    }
+}
+
+var output = Solution()
+output.isIsomorphic("egg", "add")
