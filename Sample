@@ -1,0 +1,148 @@
+// Problem 1
+// Time Complexity : O(n * l) where n = size of array, l = length of string
+// Space Complexity : O(n) -> extra space for HashMap
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+// Algorithm
+// 1 - create data structure HashMap
+// 2 - iterate over array of string
+// 3 - calculate product of prime corresponding to each char
+// 4 - map prime product to string
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        // 1
+        Map<Long, List<String>> map = new HashMap<>();
+
+        // 2
+        for (int i=0; i<strs.length; i++) {
+            long key = calcPrime(strs[i]);
+
+            // 4
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
+            }
+            map.get(key).add(strs[i]);
+        }
+        
+        return new ArrayList<>(map.values());
+    }
+    
+    // 3
+    private long calcPrime(String str) {
+        int[] primeArray = new int[]{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103};
+        long product = 1;
+        
+        for (int i=0; i<str.length(); i++) {
+            char ch = str.charAt(i);
+            product = product * primeArray[ch - 'a'];
+        }
+        
+        return product;
+    }
+}
+
+// Problem 2
+// Time Complexity : O(n)
+// Space Complexity : O(n) -> extra space for HashMap
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+// Algorithm
+// 1 - basic length check
+// 2 - initialize 2 hashmaps
+// 3 - iterate over every character
+// 4 - check for 1 to 1 mapping in both hashmaps
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        // 1
+        if (s.length() != t.length()) {
+            return false;
+        }
+        
+        // 2
+        Map<Character, Character> sMap = new HashMap<>();
+        Map<Character, Character> tMap = new HashMap<>();
+        
+        // 3
+        for(int i=0; i<s.length(); i++) {
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i);
+
+            // 4
+            if (!sMap.containsKey(sChar)) {
+                sMap.put(sChar, tChar);
+            } else {
+                if(!sMap.get(sChar).equals(tChar)) {
+                    return false;
+                }
+            }
+            
+            if (!tMap.containsKey(tChar)) {
+                tMap.put(tChar, sChar);
+            } else {
+                if(!tMap.get(tChar).equals(sChar)) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+}
+
+// Problem 3
+// Time Complexity : O(n)
+// Space Complexity : O(n) -> extra space of hashmaps
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+// Algorithm
+// 1 - check for length mismatch
+// 2 - create data structure 2 HashMaps
+// 3 - iterate over every element
+// 4 - check for 1 to 1 mapping in both hashmaps
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String[] sArray = str.split(" ");
+
+        // 1
+        if (pattern.length() != sArray.length) {
+            return false;
+        }
+        
+        // 2
+        Map<Character, String> pMap = new HashMap<>();
+        Map<String, Character> sMap = new HashMap<>();
+        
+        // 3
+        for (int i=0; i<pattern.length(); i++) {
+            char p = pattern.charAt(i);
+
+            // 4
+            if (!pMap.containsKey(p)) {
+                pMap.put(p, sArray[i]);
+            } else {
+                if (!pMap.get(p).equals(sArray[i])) {
+                    return false;
+                }
+            }
+            
+            if (!sMap.containsKey(sArray[i])) {
+                sMap.put(sArray[i], p);
+            } else {
+                if (!sMap.get(sArray[i]).equals(p)) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+}
