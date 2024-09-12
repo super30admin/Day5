@@ -1,0 +1,27 @@
+Time Complexity-O(N)
+Space Complexity-O(1)
+working On Leet code-YES
+
+### the code first creates two empty dictonaries. We then iterate over the string s and check if the first string is present as a key in the first dictonary 
+if so we check if its value is not equal to the value of the character at same position at string t, we then return False. if not we add the key value pair to the dictonary.
+We proceed the same with the second string t and second dictonary. if nothing is returned till the end of the code exists we return True as it is an isomorphic pair
+
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        dict1={}
+        dict2={}
+        for i in range(0,len(s)):
+            if(s[i] in dict1 and dict1[s[i]] != t[i]):
+                return False
+            else:
+                dict1[s[i]] = t[i]
+                
+        
+        for i in range(0,len(t)):
+            if(t[i] in dict2 and dict2[t[i]] != s[i]):
+                return False
+            else:
+                dict2[t[i]] = s[i]
+                
+        return True
+        
