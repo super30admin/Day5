@@ -1,0 +1,38 @@
+create a dic of similar anagrams, the keys are sorted strings of each anagrams
+create a list of the dic values using the keys
+return result
+
+Approach 1 : Using Hash Map & Sort
+Time Complexity: O(n(klogk)) (K- Avg length of the words] , n - no of words
+Space complexity : O(nk)  --- (We also have to store the sorted value as key and the words themselves)
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        lst={}
+        for i in strs:
+            s="".join(sorted(i))
+            lst[s]=lst.get(s, []) + [i]
+        result = [v for v in lst.values()]
+        return result
+        
+ 
+ Approach 2 : Create a list with  prime numbers for all the 26 characters of the string . Instead of sorting , we can use property of prime numbers
+ whoose product will be unique.
+ Time Complexity: O(n^2*k)=O(n^2) ######## Still i feel like it is not good !
+ space complexity: O(nk)
+ 
+ class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        prime = [ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101]
+        lst={} ### hashmap
+        for str in strs:
+            product=1
+            for char in str:
+                product = prime[ord(char)-97]*product
+        
+            if product not in lst.keys():
+                lst[product] = [str] 
+            else:
+                lst[product].append(str)
+      
+        return (list(lst.values()))

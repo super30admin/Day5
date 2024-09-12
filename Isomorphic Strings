@@ -1,0 +1,23 @@
+Approach2 : Implement using two hashmaps. 
+Time Complexity : Constant O(n) as we enter the string into hashmap once and then we check key and value corresponidng to it or not.
+Space Complexity : constant becauase even if we use two hashmaps , we are storing only alphabets as keys/values (Max of 52)
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if len(s)!=len(t): return False
+        dict1={}
+        dict2={}
+        for s1,t1 in zip(s,t):
+            if s1 in dict1 and dict1[s1]!=t1:
+                return False
+            else: 
+                dict1[s1]=t1
+        
+        for s1 ,t1 in zip(s,t):
+            if t1 in dict2 and dict2[t1]!=s1:
+                return False
+            else:
+                dict2[t1]=s1
+        return True
+
+Approach 1 : Brute Force Approach . I couldn't think of . I am automatically directing ,my thoughtt to hasmap becuase every character in string 1 corresponds to unique charatcer
+string 2.
