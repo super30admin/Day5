@@ -1,0 +1,41 @@
+Problem 3:
+
+Time Complexity : O(N)
+Space Complexity : O(N)
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) 
+    {
+        
+       #Here we need to use equals methoa as they are strings not ==
+        
+        String a[] = str.split(" ");
+        HashMap<Character,String> map = new HashMap<>();
+        HashSet<String> set = new HashSet<>();
+        
+         if(pattern.length()!=a.length) return false;
+        
+        for(int i=0;i<pattern.length();i++)
+        {
+          if(map.containsKey(pattern.charAt(i)))
+          {
+              if(!(map.get(pattern.charAt(i)).equals(a[i])) )
+                    return false;
+          }
+          else
+          {
+              if(set.contains(a[i]))
+                  return false;
+              else
+              {
+                  set.add(a[i]);
+                  map.put(pattern.charAt(i),a[i]);
+              }
+              
+          }
+              
+            
+        }
+        return true;
+    }
+}
