@@ -1,0 +1,27 @@
+# time complexity is O(nk), where 'n' is the size of the input list and 'k'is the average length of the words in the input
+# space complexity is o(n) where 'n' is the length of the input list.
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = list()
+        d = dict()
+        for s in strs:
+            primPrdct = self.primeProduct(s)
+            if primPrdct in d:
+                d[primPrdct].append(s)
+            else:
+                d[primPrdct] = [s]
+        for k in d:
+            res.append(d[k])
+        return res    
+        
+    def primeProduct(self,inputStr):
+        l = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101]
+        result = 1
+        for i in inputStr:
+            k = ord(i) - ord('a')
+            result *= l[k]
+        return result
+            
+            
+        
