@@ -1,0 +1,38 @@
+class Solution {
+    
+     //  49. Group Anagrams
+    
+    //Time Complexity is O(nk)
+   // n is length of the string and k is the length of each character
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        if(strs == null || strs.length ==0)
+            return new ArrayList<>();
+        
+        
+        HashMap<Long, List<String>> map = new HashMap<>();
+        for(String s: strs){                    //n
+            Long valueOfStr = getPrimeValue(s);
+            if(!map.containsKey(valueOfStr)){
+               map.put(valueOfStr,new ArrayList<>());
+                
+            }
+            map.get(valueOfStr).add(s);
+        }
+        return new ArrayList<>(map.values());
+        
+    }
+    
+    private Long getPrimeValue(String s){
+         long result =1;
+        int[] primeArr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127};
+        
+        
+        for(int i =0;i<s.length();i++){         //k
+           char ch = s.charAt(i);
+           int primeVal= primeArr[ch - 'a'];
+             result = primeVal * result;
+        }
+        return result;
+    }
+}

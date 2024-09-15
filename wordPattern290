@@ -1,0 +1,34 @@
+class Solution {
+    
+    //290. Word Pattern
+    //Time Complexity is O(n)
+    public boolean wordPattern(String pattern, String s) {
+        
+        
+        String[] str = s.split(" ");
+        if(str.length!=pattern.length() || pattern.length()==0 || pattern== null)
+            return false;
+        HashMap<Character,String> map = new HashMap<>();
+        for(int i=0;i<pattern.length();i++){
+            char ch = pattern.charAt(i);
+            String word = str[i];
+            if(map.containsKey(ch)){
+                if(map.get(ch).equals(word)){
+                    continue;
+                }
+                else
+                    return false;
+            }
+            else
+            {
+                if(map.containsValue(word)){
+                    return false;
+                }
+                else{
+                    map.put(ch,word);
+                }
+            }
+        }
+        return true;
+    }
+}
