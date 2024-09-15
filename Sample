@@ -1,0 +1,151 @@
+// Time Complexity : O(nklogn) where n is the no. of elements in the String[] and k is the average length of string to be sorted
+// Space Complexity : O(nk) where n is the no. of elements in the hashmap and k is the average length of string in the arraylists.
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this :
+
+
+// Your code here along with comments explaining your approach
+
+//Approach - 1 : The below approach is by sorting each string in the string array and inserting the sorted string as the key and 
+//its equal index item into the Arraylist as its value
+
+/*
+1. Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters 
+exactly once.
+*/
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> hm = new HashMap<>();
+        if(strs == null || strs.length == 0)
+            return new ArrayList<>();
+          
+        for(int item = 0;item<strs.length; item++){
+            char[] citem = strs[item].toCharArray();
+            Arrays.sort(citem);
+            String sorted = String.valueOf(citem);
+            if(!hm.containsKey(sorted))
+            {
+            	hm.put(sorted, new ArrayList<>());
+            }
+            hm.get(sorted).add(strs[item]);
+        }
+        return new ArrayList<>(hm.values());
+    }
+}
+
+//Approach - 2 : The below approach is based on the prime product factor where sorting of each string is not performed but the prime product of each string is calculated 
+//and that will be inserted as the key in the hashmap
+
+// Time Complexity : O(nk) where n is the no. of elements in the String[] and k is the average length of string.
+// Space Complexity : O(nk) where n is the no. of elements in the hashmap and k is the average length of string in the arraylists.
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this :
+
+class Solution{
+	public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<Long, List<String>> hm = new HashMap<>();
+        if(strs == null || strs.length == 0)
+            return new ArrayList<>();
+          
+        for(int item = 0;item<strs.length; item++){
+            long pp = primeProduct(strs[item]);
+            if(!hm.containsKey(pp))
+            {
+            	hm.put(pp, new ArrayList<>());
+            }
+            hm.get(pp).add(strs[item]);
+        }
+        return new ArrayList<>(hm.values());
+    }
+    
+    private Long primeProduct(String s){
+        long result = 1;
+        int[] primes = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,67,71,73,79,83,89,97,101,103};
+        for(int i = 0; i<s.length(); i++){
+            char c = s.charAt(i);
+            result = result * primes[c - 'a'];
+        }
+        return result;
+}
+
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this :
+
+/*
+2. Given two strings s and t, determine if they are isomorphic.
+Two strings are isomorphic if the characters in s can be replaced to get t.
+All occurrences of a character must be replaced with another character while preserving the order of characters. 
+No two characters may map to the same character but a character may map to itself.
+*/
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length() != t.length())
+            return false;
+        HashMap<Character, Character> sMap = new HashMap<>();
+        HashMap<Character, Character> tMap = new HashMap<>();
+        
+        for(int i = 0;i<s.length();i++){
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i);
+            if(sMap.containsKey(sChar))
+            {
+                if(sMap.get(sChar) != tChar) return false;
+            }else{
+                sMap.put(sChar, tChar);
+            }
+            
+            if(tMap.containsKey(tChar))
+            {
+                if(tMap.get(tChar) != sChar) return false;
+            }else{
+                tMap.put(tChar, sChar);
+            }
+        }
+        return true;
+    }
+}
+
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this :
+
+/*
+Given a pattern and a string s, find if s follows the same pattern.
+
+Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+*/
+
+class Solution {
+	public boolean wordPattern(String pattern, String s) {
+	        String[] str = s.split(" ");
+	        if(pattern.length() != str.length) return false;
+	        
+	        HashMap<Character,String> pMap = new HashMap<>();
+	        HashMap<String,Character> sMap = new HashMap<>();
+	        
+	        for(int i = 0;i<pattern.length();i++){
+	            char pChar = pattern.charAt(i);
+	            if(!pMap.containsKey(pChar)){
+	                pMap.put(pChar, str[i]);
+	            }
+	            else if(!(pMap.get(pChar).equals(str[i]))){
+	            	return false;
+	            }
+	            if(!sMap.containsKey(str[i])){
+	                sMap.put(str[i], pChar);
+	            }
+	            else if(!(sMap.get(str[i]).equals(pChar))){
+	            	return false;
+	            }
+	        }
+	        return true;
+	    }
+}
+
+
