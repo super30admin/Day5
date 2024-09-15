@@ -1,0 +1,45 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        '''
+        isomorphic : 2nd word can be built from first word by replacing with another caharacter where two cannot mape to the same letter
+        given : two words s and t
+        
+        do: start mapping the letter from the first letter
+                    if you find mismatch return false
+        keep in mind: you need to check reverse mapping too
+        
+            if egg maps to adb: its false
+            if egd maps to add: its false
+        
+        
+        '''
+        # we need to maps as duplicate key is not possible but duplicate value is possible 
+        
+#         map = {} # map from s to t 
+#         reversemap = {} # map from t to s
+#         for i in range(len(s)):
+#             if s[i] in map:
+#                 if map[s[i]] != t[i]: return False
+#             else:
+#                 map[s[i]] = t[i]
+#             if t[i] in reversemap:
+#                 if reversemap[t[i]] != s[i]: return False
+#             else:
+#                 reversemap[t[i]] = s[i]
+#         return True
+    
+        '''
+        other approch is maintaining array of length of 26
+        '''
+        mapping = [None] * 100
+        reverse_mapping = [None] * 100
+        
+        for i in range(len(s)):
+            index = ord(s[i]) - ord(' ')
+            if mapping[index] and mapping[index] != t[i]: return False
+            mapping[index] = t[i]
+            index = ord(t[i]) - ord(' ')
+            if reverse_mapping[index] and reverse_mapping[index] != s[i]: return False
+            reverse_mapping[index] = s[i]
+        
+        return True

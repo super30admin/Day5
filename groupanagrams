@@ -1,0 +1,21 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        '''
+        TC: O(nl) n = no of words * len(word)
+        SC: O(nl) too store n words
+        maintain dictionary to store anagrams as a value and aplphabet count as key.
+        calculate the count of alphabet and store it to the dictionary
+        return the dictionary
+        '''
+        ans = collections.defaultdict(list)
+        for s in strs:
+            count = [0] * 26
+            for c in s:
+                count[ord(c) - ord('a')] += 1
+            ans[tuple(count)].append(s)
+        return ans.values()
+        

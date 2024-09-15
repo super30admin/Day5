@@ -1,0 +1,47 @@
+'''
+time complexity : O(nk) n for traversing length + k for hashing the word of length k
+space complexity : O(nk) storing n word of k length
+
+given : pattern which provide the order of the occurance of the word 
+
+        pattern  = abba
+        s        = dog cat cat dog           : True
+        s        = dog cat cat fish          : False
+        pattern  = aaaa
+        s        = dog cat cat dog           : True
+        
+        So we need to have one to one mapping from pattern to s
+            
+        for pattern we only have lower case latters
+        so for mapping from pattern to s we can have array of 26 length
+        
+        for mapping from s to pattern we need to have map as the s can have any kind of word
+'''
+
+
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        mapping = [None] * 26 # pattern to s mapping
+        d = {} # for s to pattern mapping
+        
+        #using two map to avoid duplicate mapping of same word to diffrent letter in pattern
+        
+        s = s.split(" ") # split given string by spoace and store it in list 
+        p = len(pattern)
+        if (p != len(s)): return False # when both have different length
+        
+        
+        for i in range(p):
+            # check in pattern to s map
+            index = ord(pattern[i]) - ord('a')
+            if mapping[index] and mapping[index] != s[i]: return False
+            mapping[index] = s[i]
+            
+            # check in s to pattern map
+            if s[i] in d:
+                if d[s[i]] != pattern[i]:
+                    return False
+            else:
+                d[s[i]] = pattern[i]
+    
+        return True
