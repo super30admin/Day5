@@ -1,0 +1,127 @@
+/*
+
+Approach 1: got time out. -->
+maintaining two hash maps, one for soring index of each character in pattern, as a string of index eg: aa --> hm<a,"01">
+similarly for the str objects after splitting with split method.
+
+I got Time out for this approach.
+
+Approach 2:
+Mapping each character of the pattern with word at str.
+checking if the same character is map against different values.
+the approach was failing if there was 1-2 mapping or vice versa.
+
+
+
+Approach -3:
+
+I did mapping 2 times:
+
+Once for each character in the pattern to the words in string.
+And once for each word in the string with the character.
+
+This way I got:
+
+Runtime: 1 ms, faster than 99.52% of Java online submissions for Word Pattern.
+Memory Usage: 34.2 MB, less than 97.30% of Java online submissions for Word Pattern.
+
+
+*/
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+     
+        String [] sar;
+        sar=str.split(" ");
+        
+        
+        HashMap<Character,String> hm = new HashMap<Character,String>();
+        HashMap<String,Character> hm1 = new HashMap<String,Character>();
+
+        
+        if(pattern.length()!=sar.length)
+            return false;
+        for(int i=0;i<pattern.length();i++)
+        {
+    //        System.out.println(pattern.charAt(i));
+  //          System.out.println(sar[i]);
+
+            if(hm.containsKey(pattern.charAt(i)))
+            {
+//                            System.out.println("inside");
+
+                // System.out.println(hm.get(pattern.charAt(i)));
+                if(!hm.get(pattern.charAt(i)).equals(sar[i]))
+                {
+                    return false;
+                }
+                   
+            }
+            else{
+                 hm.put(pattern.charAt(i),sar[i]);
+            }
+        }
+        
+        for(int i=0;i<pattern.length();i++)
+        {
+ 
+            if(hm1.containsKey(sar[i]))
+            {
+
+                if(!hm1.get(sar[i]).equals(pattern.charAt(i)))
+                {
+                    return false;
+                }
+                   
+            }
+            else{
+                 hm1.put(sar[i],pattern.charAt(i));
+            }
+        }
+        /*
+        
+        Approach -1 timeout
+        for(int i=0;i<sar.length;i++)
+        {
+            if(hm1.containsKey(sar[i]))
+            {
+                String temp=hm1.get(sar[i]);
+                temp=temp+Integer.toString(i);
+                hm1.put(sar[i],temp);
+                    
+            }
+            else{
+                String temp=Integer.toString(i);
+                hm1.put(sar[i],temp);
+                
+            }
+            
+             if(hm.containsKey(pattern.charAt(i)))
+            {
+                String temp=hm.get(pattern.charAt(i));
+                temp=temp+Integer.toString(i);
+                hm.put(pattern.charAt(i),temp);
+                    
+            }
+            else{
+                String temp=Integer.toString(i);
+                hm.put(pattern.charAt(i),temp);
+                
+            }
+            
+        }
+        
+        
+        
+        for(int i=0;i<pattern.length();i++)
+        {
+            if(!hm.get(pattern.charAt(i)).equals(hm1.get(sar[i])))
+            {
+                return false;
+            }
+        }
+        
+        */
+        return  true;
+    }
+}

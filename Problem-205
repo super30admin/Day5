@@ -1,0 +1,75 @@
+/*
+
+Approach 1: O(nlog(m))
+m--> number of times the character is repeated.
+
+I am noting down the index for each character in a hashmap.
+I am appending the index of each repeated character, as string.
+
+Then after n iterations i.e one for loop.
+
+I am again traversing the string, and comparing both the hashmap,
+character at index i in for String s and t should have same occurence of indexes.
+
+MY solution is slow, because I am comparing two string.
+I tried converting the string to a number again but got number format exception.
+
+
+Runtime: 80 ms, faster than 5.11% of Java online submissions for Isomorphic Strings.
+Memory Usage: 39.8 MB, less than 5.26% of Java online submissions for Isomorphic Strings.
+*/
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        HashMap<Character,String> hm2= new HashMap<Character,String>();
+        HashMap<Character,String> hm3= new HashMap<Character,String>();
+        
+        for(int i=0;i<s.length();i++)
+        {
+           // int temp=hm.get(s.charAt(i));
+            
+            if(!hm2.containsKey(s.charAt(i)))
+            {
+                hm2.put(s.charAt(i),(Integer.toString(i)));
+                
+            }
+            else
+            {
+
+                String temp3=hm2.get(s.charAt(i));
+                temp3=temp3+Integer.toString(i);
+                hm2.put(s.charAt(i),temp3);
+                
+            }
+            
+            
+             if(!hm3.containsKey(t.charAt(i)))
+            {
+                hm3.put(t.charAt(i),Integer.toString(i));
+
+                
+            }
+            else
+            { 
+                String temp3=hm3.get(t.charAt(i));
+                temp3=temp3+Integer.toString(i);
+                hm3.put(t.charAt(i),temp3);
+                
+            }
+        }
+        
+        
+        for(int i=0;i<s.length();i++)
+        {
+            String s1= hm2.get(s.charAt(i));
+            String s2=  hm3.get(t.charAt(i));
+            if( !s1.equals(s2) )
+            {
+                    return false;
+            }
+        }
+        
+        return true;
+        
+    }
+}
