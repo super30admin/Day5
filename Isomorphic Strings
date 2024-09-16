@@ -1,0 +1,40 @@
+//TC - O(n)
+
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        HashMap<Character, Character> sToMap = new HashMap<>();
+        HashMap<Character, Character> tToMap = new HashMap<>();
+        //took two maps for both s to t and t to s
+        
+        for(int i=0; i<s.length(); i++){  //i = index
+            
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i); 
+            
+            if(sToMap.containsKey(sChar)){
+                
+                char mappedChar = sToMap.get(sChar);  //mappedchar to map in s1
+                if(mappedChar != tChar){  
+                    return false;
+                }
+            }
+             else{
+                 sToMap.put(sChar, tChar);
+            }
+            
+                 if(tToMap.containsKey(tChar)){
+                
+                     char mappedChar = tToMap.get(tChar);
+                         if(mappedChar != sChar){
+                    return false;
+                }
+          }
+                     else{
+                         tToMap.put(sChar, tChar);
+                     }
+              }
+        
+        return true;
+    }
+}
