@@ -1,0 +1,26 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String[] sArray = s.split(" ");
+        if(pattern.length() != sArray.length) // Best case scenario 
+            return false;
+        HashMap<Character , String> patternMap = new HashMap<>();
+        HashMap<String , Character> sMap = new HashMap<>();
+        // pattern = abba
+        // array {dog, cat , cat , dog}
+        for(int i =0 ; i < pattern.length() ; i++){
+            char pChar = pattern.charAt(i); // b
+            String sString = sArray[i]; // cat
+            // p --> s
+            if(!(patternMap.containsKey(pChar)))
+                patternMap.put(pChar , sString);
+            //s --> p
+            if(!(sMap.containsKey(sString)))
+                sMap.put(sString , pChar);
+            
+            if(!((patternMap.get(pChar).equals(sString)) && (sMap.get(sString).equals(pChar))))
+               return false;
+            }
+        return true;
+        } 
+    }
+// Time complexity - O(n) , Space complexity - O(n), actually O(3n) which equals O(n)
