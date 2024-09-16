@@ -1,0 +1,22 @@
+// Time Complexity : 0(n) where n is length of pattern
+// Space Complexity : O(2n) == 0(n) where is length of pattern
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String[] words = str.split(" "); // split the str by space
+        
+        if (words.length != pattern.length()) // if both the pattern length and no of words in string are not same return false
+            return false;
+        
+        HashMap<String,String> index = new HashMap<>(); // hashmap to store the charcater and pattern to associated to it and vice versa
+        
+        // looping for length of pattern or words in string
+        for (Integer i=0; i<words.length; ++i)
+            if (index.put(pattern.charAt(i), i) != index.put(words[i], i)) // if the character of pattern is associated to different word if word is asSOCAIETD TO different charcater of pattern return false
+                return false;
+        
+        return true; // by default return true
+    }
+}

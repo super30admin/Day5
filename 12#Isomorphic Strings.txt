@@ -1,0 +1,21 @@
+// Time Complexity : 0(n) where n is length of string
+// Space Complexity : O(1) constant space
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+class Solution {
+    
+    public boolean isIsomorphic(String s1, String s2) {
+        
+        // the string can be of composed of 256 charcaters,
+        // so we use 256*2 size rray to store the index of mapping characters
+        
+        int[] m = new int[512];
+        for (int i = 0; i < s1.length(); i++) { // here both string length are same is given 
+            if (m[s1.charAt(i)] != m[s2.charAt(i)+256]) return false; // if the charcater at index i of any one the string have already been visited in the string and have different value return false
+            m[s1.charAt(i)] = m[s2.charAt(i)+256] = i+1; // else set value = i +1, for the character i index of both string
+        }
+        return true; //by deafult it will be true
+    }
+}
