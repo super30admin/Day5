@@ -1,0 +1,21 @@
+# Time Complexity : O(m*nlogn) where m is number of strings in the given array and n is length of longest string in array
+# Space Complexity : O(m*n) where m is number of strings in given array and n is length of longest string in array
+# Did this code successfully run on Leetcode : Yes
+# Any problem you faced while coding this : Took about an hour
+
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        result = {}
+        
+        for i in range(len(strs)):
+            hashCode = ''.join(sorted(strs[i]))
+            if hashCode in result:
+                result[hashCode].append(strs[i])
+            else:
+                result[hashCode] = [strs[i]]
+                
+        return result.values()
