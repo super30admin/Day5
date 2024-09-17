@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        
+/*        unordered_map<char,char> s_to_t;
+        unordered_map<char,char> t_to_s;
+        for(int i=0; i < s.size(); i++){
+           char a = s[i];
+                char b = t[i];
+            if(s_to_t.find(a) == s_to_t.end() && t_to_s.find(b) == t_to_s.end()){
+                
+                s_to_t[a]=b;
+                t_to_s[b]=a;
+            }
+            else if(!(s_to_t[a]==b || !t_to_s[b] ==a))
+                return false;
+        }
+        return true;
+  */
+        
+        unordered_map<char,char> smap;
+        unordered_set<char> sset;
+        for(int i =0; i< s.size(); i++){
+            char a =s[i]; char b = t[i];
+            if(smap.find(a) != smap.end()){
+                if( !(smap[a] == b))
+                    return false;}
+                    else {
+                        if( sset.find(b) != sset.end())
+                    return false;
+                    
+                     smap[a] = b;
+                     sset.insert(b);
+                }}            
+    return true;
+    }
+    
+    
+};
