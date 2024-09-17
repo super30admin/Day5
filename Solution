@@ -1,0 +1,86 @@
+//Hashing 1
+
+//Problem1
+
+// class Solution {
+
+//     //TC O(n) SC(n)
+//     public List<List<String>> groupAnagrams(String[] strs) {
+//         if(strs == null || strs.length ==0) return new ArrayList<>();
+
+//         HashMap<String, List<String>> map = new HashMap<>();
+//         for(String s : strs){
+//             char[] charArray = s.toCharArray();
+//             Arrays.sort(charArray);
+//             String sorted = String.valueOf(charArray);
+//             if(!map.containsKey(sorted)){
+//                 map.put(sorted, new ArrayList<>());
+
+//             }
+//                 map.get(sorted).add(s);
+//         }
+//    return new ArrayList<>(map.values()); }
+// }
+
+
+
+Problem 2
+
+// class Solution {
+//     //Time : O(n)
+//     //Space : O(1)
+//     public boolean isIsomorphic(String s, String t) {
+//         if(s.length() != t.length()) return false;
+//         HashMap<Character, Character> sMap = new HashMap<>();
+//         HashMap<Character, Character> tMap = new HashMap<>();
+//         for(int i = 0;i<s.length() ; i++){
+//             char sChar = s.charAt(i);
+//             char tChar = t.charAt(i);
+//             if(!sMap.containsKey(sChar)){
+//                 sMap.put(sChar, tChar);
+//             }else if(sMap.get(sChar) != tChar){
+//                   return false;
+//             }
+//             if(!tMap.containsKey(tChar)){
+//                 tMap.put(tChar, sChar);
+//             }else
+//             {if(tMap.get(tChar) != sChar){
+//                   return false;
+//             }
+//             }
+//         }
+//         return true;
+//     }
+// }
+
+
+Problem 3
+
+// class Solution {
+
+//     //TC O(n) SC O(1)
+//     public boolean wordPattern(String pattern, String s) {
+//         String [] stringArray = s.split(" ");
+//         if(pattern.length() != stringArray.length ) return false;
+//         HashMap<Character, String> keyPattern = new HashMap<>();
+//          HashMap<String, Character> keyString = new HashMap<>();
+//         for(int i =0; i<stringArray.length ;i++){
+//             if(keyPattern.containsKey(pattern.charAt(i))){
+//                 if(!keyPattern.get(pattern.charAt(i)).equals(stringArray[i])){
+//                     return false;
+//                 }
+//             }
+//                 if(keyString.containsKey(stringArray[i])){
+//                 if(!keyString.get(stringArray[i]).equals(pattern.charAt(i))){
+//                     return false;
+//                 }
+
+//         }
+//                   keyPattern.put(pattern.charAt(i), stringArray[i]);
+//                   keyString.put(stringArray[i] , pattern.charAt(i));
+
+//                    }
+//                   return true;  }
+
+//                   }
+
