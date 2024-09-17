@@ -1,0 +1,35 @@
+// Space  complexity is O(1) because the there are at max of 26 characters that can be put in hashmap and each key is mapped to one value.
+// Time complexity it O(l), l is the length of string.
+
+
+import java.util.HashMap;
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+
+        // edge case
+        if (s.length != t.length) {
+            return false;
+        }
+
+        HashMap<Character, Character> sMap = new HashMap<>();
+        HashMap<Character, Character> tMap = new HashMap<>();
+        for (i = 0; i < s.length(); i++) {
+            char schar = s.charAt(i);
+            char tchar = t.charAt(i);
+            if (sMap.containsKey(sChar)) {
+                if (sMap.get(sChar) != tChar) return false;
+            } else {
+                sMap.get(sChar, tChar);
+            }
+            if (tMap.containsKey(tChar)) {
+                if (sMap.get(tChar) != sChar) return false;
+            } else {
+                tMap.get(tChar, SChar);
+            }
+
+            return true;
+
+        }
+    }
+}
