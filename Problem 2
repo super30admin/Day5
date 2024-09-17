@@ -1,0 +1,26 @@
+// Time Complexity : O(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No 
+
+// Please let me know if this can be further optimised or I can elimninate some unnecessary steps.
+
+
+// Your code here along with comments explaining your approach
+
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        
+        dict = {}
+        //looping through each character in s and adding the corresponding value in t as value. next when the same element comes as a key in "t",  
+        //I am checking if the corresponding element in t equals the value we have stored in s. If not return False.
+        for i in range (len(s)):
+            if s[i] not in dict.keys():
+                if(t[i] not in dict.values()):
+                    dict[s[i]] = t[i]
+                else:
+                    return False
+            else:
+                if(dict[s[i]]!= t[i]):
+                    return False
+        return True

@@ -1,0 +1,29 @@
+// Time Complexity  Avg :O(n Square) for sorting +  O(1) for inserting - Not sure if this is correct. Please correct me
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+
+
+class Solution:
+    def Anagram_Grouping(self,arr):
+        dict = { }
+// sorting the words in alphabetical order to make them unique and adding them as the key to the dictionary
+        for i in range(len(arr)):
+	//if the key is already in dictionary append anagram to the value(list) if not create a new key,value pair and appeend the anagram to the value(list)
+            key = "".join(sorted(arr[i]))
+            if(key in dict.keys()):
+                dict[key].append(arr[i])
+            else:
+                dict[key] = []
+                dict[key].append(arr[i])
+        res = []
+        for value in dict.values():
+            res.append(value)
+        return res
+
+
+obj = Solution()
+obj.Anagram_Grouping(["eat", "tea", "tan", "ate", "nat", "hat"])

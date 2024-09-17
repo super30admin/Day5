@@ -1,0 +1,30 @@
+// Time Complexity : o(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+
+class Solution(object):
+    def wordPattern(self, pattern, str):
+       
+    
+        dict = {}
+        // split the str at empty space 
+        wlist = str.split(" ")
+        if(len(pattern) != len(wlist)):
+            return False
+        for i in range(len(pattern)):
+        // for each character in pattern (key), store the corresponding word from word list as Value to the key in dictionary.
+        // if the same  key comes in the pattern, check if the corresponding word is equal to the value we stored for the key. if it is not same return FALSE.
+            
+            if(pattern[i] not in dict.keys()):
+                if wlist[i] in dict.values():
+                    return False
+                else:
+                  dict[pattern[i]] = wlist[i]
+            else:
+                if(dict[pattern[i]] != wlist[i]):
+                    return False
+        return True
