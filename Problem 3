@@ -1,0 +1,28 @@
+//Time complexity: O(n)
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        Map<Character, String> myMap = new HashMap<>();
+        Map<String, Character> reverseMap = new HashMap<>();
+        
+        String[] words = str.split(" ");
+        if(words.length != pattern.length()) return false;
+        
+        for(int i=0;i<words.length;++i) {
+            char ch = pattern.charAt(i);
+            String s = myMap.get(ch);
+            Character check = reverseMap.get(words[i]);
+            if(s == null && check == null) {
+                s = words[i];
+                myMap.put(ch, s);
+                reverseMap.put(s, ch);
+            } else if(check !=null && s!= null) {
+                if(!words[i].equals(s)) return false;
+                if(!(ch==check)) return false;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+}
