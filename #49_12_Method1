@@ -1,0 +1,30 @@
+#49Group Anagrams
+#Method1
+
+#time complexity O(nklogk)
+#space O(n)
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if(strs==null || strs.length==0)
+            return new ArrayList<>();
+        
+        HashMap<String,List<String>> map = new HashMap<>();
+        
+        for(int i=0; i<strs.length; i++)
+        {
+            char [] SubString = strs[i].toCharArray();
+            Arrays.sort(SubString);
+            String SortedSubString= String.valueOf(SubString);
+            
+            if(!map.containsKey(SortedSubString))
+            {
+                map.put(SortedSubString,new ArrayList<>());
+            }
+            
+            map.get(SortedSubString).add(strs[i]);
+            
+        }
+        return new ArrayList<> (map.values());
+    }
+}
