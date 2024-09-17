@@ -1,0 +1,25 @@
+// TC : O(m)
+// SC : O(1)    
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String[] strArray = s.split(" ");
+        if(pattern.length() != strArray.length)return false;
+        
+        Map<Character, String> map = new HashMap<>();
+        Set<String> set = new HashSet<>();
+         
+        for(int i = 0; i < pattern.length();i++){
+            char c = pattern.charAt(i);
+            String str = strArray[i];
+            if(map.containsKey(c) && !str.equals(map.get(c)))
+                return false;
+            if(!map.containsKey(c) && set.contains(str))
+                return false;
+          
+            map.put(c,str);
+            set.add(str);
+                        
+        }
+        return true;
+    }
+}
