@@ -3,7 +3,7 @@ Explain your approach in **three sentences only** at top of your code
 
 
 ## Problem 1:
-Given an array of strings, group anagrams together.
+Given an array of strings, group anagrams together. (https://leetcode.com/problems/group-anagrams/)
 
 Example:
 Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
@@ -19,7 +19,7 @@ All inputs will be in lowercase.
 The order of your output does not matter.
 
 ## Problem 2:
-Given two strings s and t, determine if they are isomorphic.
+Given two strings s and t, determine if they are isomorphic. (https://leetcode.com/problems/isomorphic-strings/)
 Two strings are isomorphic if the characters in s can be replaced to get t.
 All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
 
@@ -38,7 +38,7 @@ Note:
 You may assume both s and t have the same length.
 
 ## Problem 3:
-Given a pattern and a string str, find if str follows the same pattern.
+Given a pattern and a string str, find if str follows the same pattern. (https://leetcode.com/problems/word-pattern/)
 Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str.
 
 Example 1:
