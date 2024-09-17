@@ -1,0 +1,31 @@
+class Solution {
+     // Time Complexity : O(size of String(s/t))
+// Space Complexity :   O(size of String(s/t))
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+//Maintaining a hashmap to check the order as well as not allowing the duplicate value being assigned a different key.
+//Here considering key as first String characters and value as second String characters
+    public boolean isIsomorphic(String s, String t) {
+        if(((s == null) && (t == null)) || (s.length() ==0 || t.length()==0)) return true;
+
+        //if length not equal, they cannot be isomorphic
+        if(s.length()!=t.length())  return false;
+        HashMap<Character,Character> hm = new HashMap<Character,Character>();
+        for(int i=0;i<s.length();i++){
+            if(!hm.containsKey(s.charAt(i))){
+                if( !hm.containsValue(t.charAt(i))){
+                    hm.put(s.charAt(i),t.charAt(i));
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                if(!hm.get(s.charAt(i)).equals(t.charAt(i))) return false;
+            }
+        }
+        return true;
+    }
+}

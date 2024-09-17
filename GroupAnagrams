@@ -1,0 +1,45 @@
+class Solution {
+    // Time Complexity : O(S*S*s) where S: String array, s: size of largest string 
+// Space Complexity :   O(S*S*s)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+//Maintaining to flag array which tells us about if a word is part of a group of anagaram or not, then according forming a new group or adding to existing group.
+    public List<List<String>> groupAnagrams(String[] strs) {
+        int[] flag = new int[strs.length];
+        if(strs == null || strs.length == 0) return null;
+        List<List<String>> ans = new ArrayList<>();
+        for(int i =0;i< (strs.length);i++){
+            if(flag[i] == 0){
+                ArrayList<String> group = new ArrayList<String>();
+                group.add(strs[i]);
+                flag[i] = 1;
+                for(int j = i+1; j<strs.length;j++){
+                    if(flag[j]==0 && (strs[i].length() == strs[j].length())){
+                        if(checkAnagram(strs[i],strs[j])){
+                            group.add(strs[j]);
+                            flag[j]=1;
+                        }
+                    }
+                }
+                ans.add(group);
+            }
+        }
+        return ans;        
+    }
+
+//Checking anagram through count array technique    
+    private boolean checkAnagram(String a, String b){
+        int[] count = new int[26];
+        for(int i=0;i<a.length();i++){
+            count[a.charAt(i)-'a']++;
+            count[b.charAt(i)-'a']--;
+        }
+        for(int i=0;i<26;i++){
+            if(count[i]!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
