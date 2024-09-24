@@ -1,6 +1,4 @@
 # Hashing-1
-Explain your approach in **three sentences only** at top of your code
-
 
 ## Problem 1:
 Given an array of strings, group anagrams together.
