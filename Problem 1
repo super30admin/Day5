@@ -1,0 +1,34 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        HashMap<Long , List<String>> stringMap = new HashMap<>();
+        
+        // loop through each element in input array
+        for(String s : strs){ //["eat","tea","tan","ate","nat","bat"]
+            long primeVal = calculateNumericValue(s); //eat = 11*2*
+            
+            if(!(stringMap.containsKey(primeVal))){
+                stringMap.put(primeVal , new ArrayList<>());
+            }
+            stringMap.get(primeVal).add(s);
+        }
+        return new ArrayList<>(stringMap.values());
+    }
+        
+        // Calculate  numeric value of a string
+        private long calculateNumericValue(String s){
+           
+            int[] primeNumbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83,                                     89, 97, 101};
+            long ans = 1;
+                
+            for(int i = 0 ; i < s.length() ; i ++){
+                    char ch = s.charAt(i);
+                    ans = ans*primeNumbers[ch- 'a']; // use ascii to get the index
+                }
+            return ans;
+
+        
+    }
+}
+
+// Working now. updated from int to long to take care of overflow
