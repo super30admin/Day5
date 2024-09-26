@@ -1,0 +1,32 @@
+//Time Complexity : O(N)
+//Space Complexity : O(1)
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+       if(t.length()!=s.length()) return false;
+        if(s==null || t==null)return false;
+        //Smap sourcemap with sourcechars, targetchars
+        //Tmap targetmap with targetchars, sourcechars
+        HashMap<Character,Character> Smap = new HashMap<>();
+        HashMap<Character,Character> Tmap = new HashMap<>();
+        for(int i=0;i<s.length();i++){
+           char Schar = s.charAt(i);
+           char Tchar = t.charAt(i);
+            if(!Smap.containsKey(Schar)){
+             Smap.put(Schar,Tchar);   
+            }
+            else{
+                if(Smap.get(Schar)!=Tchar) return false;
+
+            }
+            if(!Tmap.containsKey(Tchar)){
+                Tmap.put(Tchar,Schar);
+            }
+            else{
+                if(Tmap.get(Tchar)!=Schar) return false;
+            }
+
+        }
+        //if all cases fail return true
+        return true;
+    }
+}

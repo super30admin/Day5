@@ -1,0 +1,23 @@
+//Time Complexity : O(n+logk)
+//Space Complexity : O(1)
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String,ArrayList<String>> map = new HashMap<>();
+        for(String s : strs){
+            //for each word of the string sort it
+            char [] str = s.toCharArray();
+            Arrays.sort(str);
+            String sorted = String.valueOf(str);
+            //if map doesn't contain it as key
+            if(!map.containsKey(sorted)){
+                //put the sorted word in the map and create new list
+                map.put(sorted , new ArrayList<>());
+
+            }
+            //if sorted word contains add to list
+                     map.get(sorted).add(s);
+        }
+        //return the arraylist 
+        return new ArrayList<>(map.values());
+    }
+}

@@ -1,0 +1,32 @@
+//Time Complexity : O(N)
+//Space Complexity : O(N)
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String st[] = s.split(" ");
+        if(st.length != pattern.length()) return false;
+        if(s==null || pattern==null) return false;
+        HashMap <Character, String> chars = new HashMap();
+        HashMap <String, Character> word = new HashMap();
+
+        for(int i=0; i<pattern.length(); i++){
+            char ch = pattern.charAt(i);
+            String ss = st[i];
+            //if the map doesnt contain the char
+            if(!chars.containsKey(ch)){
+               if(word.containsKey(ss)) return false;
+                else{   
+                    //doesnt contain in both maps now put in other maps
+                    chars.put(ch,ss);
+                    word.put(ss,ch);
+                    }
+            }
+
+            else{ 
+               if(!(chars.get(ch).equals(st[i])))return false;
+            }
+
+        }//else if everything is correct return true
+        return true;
+    }
+
+}
