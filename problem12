@@ -1,0 +1,18 @@
+def isIsomorphic(self, s: str, t: str) -> bool:
+    if len(s)!=len(t):
+        return False
+    dic = collections.defaultdict(list)
+    dic1 = collections.defaultdict(list)
+    for i, val in enumerate(s):
+        dic[val].append(i)
+    # print(dic.values())
+    for j, val in enumerate(t):
+        dic1[val].append(j)
+    # print(dic1.values())
+    if sorted(dic.values()) != sorted(dic1.values()):
+        return False
+
+    else:
+        return True
+# time- O(n+k+mlongm) = n+k because of the for loops and mlogm for sorting values in dic
+# space- O(n+m)- storing the index and the char of the string

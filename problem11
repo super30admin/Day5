@@ -1,0 +1,18 @@
+def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    # ans = collections.defaultdict(list)
+    # for s in strs:
+    #     ans[tuple(sorted(s))].append(s)
+    # return ans.values()
+    # time: O(nmlogm) n is len(strs), m is len of each string in strs| mlogm for sorting and n for the for loop
+    # space: O(nm)
+    ans = collections.defaultdict(list)
+    for st in strs:
+        c = [0] * 26
+        for s in st:
+            c[ord(s) - ord('a')] += 1
+        ans[tuple(c)].append(st)
+    return ans.values()
+    ans = collections.defaultdict(list)
+
+    # time- O(nm)-not sorting
+    # space- O(nm)

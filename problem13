@@ -1,0 +1,16 @@
+def wordPattern(self, pattern: str, s: str) -> bool:
+    dic=collections.defaultdict(list)
+        dic1=collections.defaultdict(list)
+        lis=s.split()
+        if len(pattern)!=len(lis):
+            return False
+        # print(lis)
+        for i,val in enumerate(pattern):
+            dic[val].append(i)
+        # print(dic)
+        for i,val in enumerate(lis):
+            dic1[val].append(i)
+        # print(dic1)
+        return sorted(dic.values())==sorted(dic1.values())
+# time-O(N+M+klogk)- n,m is the for loops of pattern and s. klogk for sorting
+# space-O(N+K)
