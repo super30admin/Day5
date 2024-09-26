@@ -1,0 +1,48 @@
+"""
+Question:
+Given a pattern and a string str, find if str follows the same pattern.
+Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str.
+
+Example 1: Input: pattern = "abba", str = "dog cat cat dog" Output: true
+Example 2: Input:pattern = "abba", str = "dog cat cat fish" Output: false
+Example 3: Input: pattern = "aaaa", str = "dog cat cat dog" Output: false
+Example 4: Input: pattern = "abba", str = "dog dog dog dog" Output: false 
+
+Notes: You may assume pattern contains only lowercase letters, and str contains lowercase letters that may be separated by a single space.
+"""
+"""
+Time Complexity : O(n)  # Todo - Can we improve this?
+Space Complexity : O(n)
+Leetcode : Yes
+Challenges: None
+
+Comments: Separate the string into a list before creating a hashap to store the alphabets of the pattern and string itself. Compare
+the length annd iterate over them to check if corresponding pattern exists in hashmap. If yes, return True. Else, false.
+"""
+class Solution(object):
+    def wordPattern(self, pattern, strings):
+        list = strings.split(' ')
+        if len(pattern) != len(list):
+            return False
+        
+        if len(set(pattern)) != len(set(list)):
+            return False
+        
+        dict = {}
+        for i in range(len(pattern)):
+            if pattern[i] not in dict:
+                dict[pattern[i]] = list[i]
+            else:
+                if dict[pattern[i]] != list[i]:
+                    return False
+        return True
+
+# For Jupyter notebook
+obj = Solution()
+pattern1 , string1 =  "abba", "dog cat cat dog"
+pattern2 , string2 =  "abba", "dog cat cat fish"
+pattern3 , string3 =  "aaaa", "dog cat cat dog"
+print("Example1:",obj.wordPattern(pattern1, string1))
+print("Example2:",obj.wordPattern(pattern2, string2))
+print("Example3:",obj.wordPattern(pattern3, string3))
+print("Example4:",obj.wordPattern(pattern4, string4))

@@ -1,0 +1,8 @@
+Learn more or give us feedback
+# Time Complexity : O(n)
+# Space Complexity : O(n)
+# Did this code successfully run on Leetcode : No
+
+# Comments: I am not sure how to go about this. Similar to group analgrams problem, we could create a hashmap to store characters
+and iterate through the values to check if it's valid. Still working on it.
+
