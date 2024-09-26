@@ -1,0 +1,32 @@
+//Time Complexity - O(n)
+//Space Complexity - O(n)
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+      HashMap<Character,String> mainHashMap = new  HashMap<Character,String>();
+        HashMap<String,Character> secondMap = new  HashMap<String,Character>();
+	    String[] words = s.split("\\s+");
+	    if(pattern.length() != words.length)
+	        return false;
+	   for(int i = 0; i< pattern.length() ; i++)
+	    {
+	        char main = pattern.charAt(i);
+            String secondary = words[i];
+            if(mainHashMap.containsKey(main))
+            {
+                String check = mainHashMap.get(main);
+                if(!check.equals(secondary)) return false;
+            }
+            else
+            {
+                if(secondMap.containsKey(secondary))
+                {
+                    return false;
+                }
+                                  
+                mainHashMap.put(main,secondary);
+                secondMap.put(secondary,main);
+            }
+	    }
+	   return true;
+    }
+}
