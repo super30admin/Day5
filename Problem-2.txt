@@ -1,0 +1,37 @@
+//https://leetcode.com/problems/isomorphic-strings/
+//Time Complexity- O(n)
+//Space Complexity-O(1) as map will have only 26 enteries
+
+
+//using two hashmaps
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length() != t.length()) return false;
+        
+        Map<Character,Character> m1 = new HashMap<>();
+        Map<Character,Character> m2 = new HashMap<>();
+        for(int i =0 ;i<s.length();i++)
+        {
+            if(!m1.containsKey(s.charAt(i)))
+            {
+                m1.put(s.charAt(i),t.charAt(i));
+                
+            }
+            if(m1.get(s.charAt(i)) != t.charAt(i))
+                {
+                    return false;
+                }
+             if(!m2.containsKey(t.charAt(i)))
+            {
+                m2.put(t.charAt(i),s.charAt(i));
+                
+            }
+              if(m2.get(t.charAt(i)) != s.charAt(i))
+                {
+                    return false;
+                }
+            
+        }
+        return true;
+    }
+}

@@ -1,0 +1,70 @@
+//Problem - https://leetcode.com/problems/group-anagrams/
+//time complexity - O(nklogk) - n - number of elements in array , k - average size of string in array
+//space complexity - O(nk)
+
+//Sorted the element in array and grouped it accordingly using map
+//first way
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if(strs==null || strs.length ==0) return new ArrayList<>();
+        
+        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        for(String s:strs)
+        {
+            char[] chr = s.toCharArray();
+            Arrays.sort(chr);
+            String sortedstr = String.valueOf(chr);
+            
+            if(!map.containsKey(sortedstr))
+            {
+                map.put(sortedstr,new ArrayList<>());
+                
+            }
+            map.get(sortedstr).add(s);
+            
+        }
+        return new ArrayList<>(map.values());
+    }
+}
+
+
+//Problem - https://leetcode.com/problems/group-anagrams/
+//time complexity - O(nk) - n - number of elements in array , k - average size of string in array
+//space complexity - O(n)
+
+//using prime numbers multiplication
+//second way
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if(strs==null || strs.length ==0) return new ArrayList<>();
+        
+        HashMap<Double, ArrayList<String>> map = new HashMap<>();
+        for(String s:strs)
+        {
+            double res = getPrimeProduct(s);
+            
+            if(!map.containsKey(res))
+            {
+                map.put(res,new ArrayList<>());
+                
+            }
+            map.get(res).add(s);
+            
+        }
+        return new ArrayList<>(map.values());
+    }
+    
+    private double getPrimeProduct(String s)
+    {
+        double d=1;
+        int[] prime = new int[]{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,101,103};
+       for(int i =0 ;i<s.length();i++){
+        char a = s.charAt(i);
+           int p = prime[a -'a'];
+           d = d * p;
+       }
+        return d;
+    }
+}
