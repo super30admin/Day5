@@ -2,6 +2,7 @@
 Explain your approach in **three sentences only** at top of your code
 
 
+
 ## Problem 1:
 Given an array of strings, group anagrams together.
 
@@ -17,6 +18,8 @@ Output:
 Note:
 All inputs will be in lowercase.
 The order of your output does not matter.
+
+        
 
 ## Problem 2:
 Given two strings s and t, determine if they are isomorphic.
@@ -36,6 +39,10 @@ Input: s = "paper", t = "title"
 Output: true
 Note:
 You may assume both s and t have the same length.
+
+
+
+        
 
 ## Problem 3:
 Given a pattern and a string str, find if str follows the same pattern.
@@ -58,3 +65,5 @@ Input: pattern = "abba", str = "dog dog dog dog"
 Output: false
 Notes:
 You may assume pattern contains only lowercase letters, and str contains lowercase letters that may be separated by a single space.
+
+
