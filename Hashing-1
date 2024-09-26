@@ -1,0 +1,117 @@
+============================================Group Anagrams=============================================
+
+# Time Complexity : O(NlogN) // Sorting the string adds the complexity to nlog n.
+# Space Complexity : O(N) // New auxilary hash map is used for our processing.
+# Did this code successfully run on Leetcode : Yes
+# Any problem you faced while coding this : No
+
+# Explanation 
+# Sort the strings and use them as key to group similar words together.
+
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if(strs == null || strs.length ==0)
+            return new ArrayList();
+        
+        Map<String, List>  hash = new HashMap<String, List>();
+        for(String s: strs){
+            char[] c = s.toCharArray();
+            Arrays.sort(c);
+            String sortedString = String.valueOf(c);
+            
+            if(!hash.containsKey(sortedString)){
+                hash.put(sortedString, new ArrayList<>());
+            }
+            hash.get(sortedString).add(s);
+        }
+        
+        return new ArrayList(hash.values());
+        
+    }
+}
+
+
+==============================================IsIsomorphic?=================================================
+
+# Time Complexity : O(N) // We parse through the length of the string to identify if the corresponding alternate is available in # other string
+# Space Complexity : O(1) // However long the string can be but we will have a constant space allocated for calculation. No change in space according to input data
+# Did this code successfully run on Leetcode : Yes
+# Any problem you faced while coding this : No
+
+# Explanation 
+# Each character will be keyed along with the value from other string
+# We have to use 2 hashmaps here because we handle duplication. Eg : 'ads' & 'add' are isomorphic? With one hasmap ads will have # keys a, d, s with values 'a','d','d'. Only when we have other hashmap we will be sure that ads and add are not isomorphic. 
+
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        
+        // if(s == null || t == null || s.length() ==0 ||t.length() ==0)
+        //     return false;
+        
+        if(s.length() != t.length())
+            return false;
+        
+        
+        Map<Character, Character> sHashMap = new HashMap<Character, Character>();
+        Map<Character, Character> tHashMap = new HashMap<Character, Character>();
+        
+        for(int i = 0 ; i < s.length(); i++){
+            if(!sHashMap.containsKey(s.charAt(i))){
+                sHashMap.put(s.charAt(i), t.charAt(i));
+            }
+            if(sHashMap.get(s.charAt(i)) != t.charAt(i)){ 
+                    return false;
+            }
+            
+            if(!tHashMap.containsKey(t.charAt(i))){
+                tHashMap.put(t.charAt(i), s.charAt(i));
+            }
+            
+            if(tHashMap.get(t.charAt(i)) != s.charAt(i)){ 
+                    return false;
+            }
+            
+        }
+        return true;
+        
+    }
+}
+==========================================================Word Pattern =======================================
+
+// # Time Complexity : O(N) .
+// # Space Complexity : O(1) 
+// # Did this code successfully run on Leetcode : Yes
+// # Any problem you faced while coding this : No
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        if(pattern.trim() == null || str.trim() == null)
+            return false;
+        
+        String[] arrOfString = str.split(" ");
+        if(arrOfString.length != pattern.length())
+            return false;
+        Map<Character, String> patternMap = new HashMap<Character, String>();
+
+        for(int i = 0 ; i <pattern.length(); i++){
+            Character currChar = pattern.charAt(i);
+            String currStr = arrOfString[i];
+            
+            if(patternMap.containsKey(currChar)){
+               if(!patternMap.get(currChar).equals(currStr)){
+                   return false;
+               }
+            }else{
+                if(patternMap.containsValue(currStr)){
+                    return false;
+                }
+                 patternMap.put(currChar,currStr );
+            }
+        }
+        return true;
+        
+    }
+}
+
