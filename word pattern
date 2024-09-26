@@ -1,0 +1,51 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+
+import java.util.HashMap;
+import java.util.ArrayList;
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        HashMap<Character,String> fHash = new HashMap<>();
+        HashMap<String,Character> sHash = new HashMap<>();
+        ArrayList<String> arr = letters(s);
+        if(pattern.length() != arr.size()) return false;
+        for(int j = 0; j < pattern.length(); j++){
+            String x = arr.get(j);
+            char y = pattern.charAt(j);
+            if(fHash.containsKey(y)){
+                if(!fHash.get(y).equals(x)) return false;
+            }else{
+                fHash.put(y,x);
+            }
+            if(sHash.containsKey(x)){
+                if(!sHash.get(x).equals(y)) return false;
+            }else{
+                sHash.put(x,y);
+            }
+        }
+        return true;
+        
+    }
+    private static ArrayList<String> letters(String s){
+        String temp = "";
+        ArrayList<String> strArray = new ArrayList<String>();
+        for(int i = 0; i < s.length(); i++){
+         char c = s.charAt(i);
+        //  String space = " ";
+         if(c == ' '/*space.charAt(0)*/){
+             strArray.add(temp);
+             temp = "";
+         }
+         else{
+             temp += Character.toString(c);
+         }
+     }
+    strArray.add(temp);
+    return strArray;
+    }
+}
