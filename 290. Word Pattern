@@ -1,0 +1,40 @@
+Time Complexity: ?
+Space complexity: ?
+Did this program got successfully submitted on leetcode: Yes
+
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+      /*1.Sepearte the words from string using split on space and store in an array of words
+        2.Check for the length of patter and words array
+        3.Create a hashmap and store the character to value key pair
+                    patter.charAt[i],word[i]
+        4.If there is a new value for any of the key than stored before return false. */
+        
+        //1.
+        String[] words= str.split(" ");
+        
+        //2.
+        if(pattern.length()!=words.length)
+            return false;
+        
+        //3.
+        HashMap<Character,String> map = new HashMap<>();
+        
+        for(int i=0;i<pattern.length();i++){
+            char c = pattern.charAt(i);
+            String word = words[i];
+            System.out.println(" "+c+" "+word);
+            if(map.containsKey(c)){
+                if(!map.get(c).equals(words[i]))
+                    return false;
+            }else{
+                if(map.containsValue(words[i]))
+                    return false;
+                map.put(c, words[i]);
+            }
+        }
+        
+        return true;
+    }
+}
