@@ -1,0 +1,22 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        dic=dict()
+        dic2=dict()
+        for i in range (0,len(s)):
+            if s[i] not in dic.keys():
+                dic[s[i]]=t[i]
+            else:
+                x=dic[s[i]]
+                if x!=t[i]:
+                    return False
+            if t[i] not in dic2.keys():
+                dic2[t[i]]=s[i]
+            else:
+                y=dic2[t[i]]
+                if y!=s[i]:
+                    return False
+                    
+        return True
+
+
+        

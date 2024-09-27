@@ -1,0 +1,22 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        dic=dict()
+        dic2=dict()
+        ls=s.split(" ")
+        if (len(ls)!=len(pattern)):
+            return False
+        for i in range (0,len(pattern)):
+            if pattern[i] not in dic.keys():
+                dic[pattern[i]]=ls[i]
+            else:
+                x=dic[pattern[i]]
+                if x!=ls[i]:
+                    return False
+            if ls[i] not in dic2.keys():
+                dic2[ls[i]]=pattern[i]
+            else:
+                y=dic2[ls[i]]
+                if y!=pattern[i]:
+                    return False
+                    
+        return True
