@@ -1,0 +1,22 @@
+// time complexity: w*n(w: is word length and n : number of strings)
+//space complexity: O(n)
+//approach: for every string in given list, we create a key: key containing count of characters of word
+// for all those strings, who have this same key(same count of characters for each alphabet), we group them and consider them as an anagram
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap();
+       
+        for(String str : strs){
+            char[] ch = new char[26];
+            char[] arr = str.toCharArray();
+            for(char c : arr){
+                ch[c-'a']++;
+            }
+            String key = String.valueOf(ch);
+            if(! map.containsKey(key))
+                map.put(key, new ArrayList<String>());
+            map.get(key).add(str);
+        }
+        return new ArrayList<>(map.values());
+    }
+}

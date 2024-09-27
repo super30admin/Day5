@@ -1,0 +1,31 @@
+//time complexity: O(n)
+//space complexity: O(n)
+//edge case: s = bar, t == foo, a--> o, (r-> o) wrong, 
+//we need to check the keys of other hashmap => we will come to know that hashmap that o is already mapped to a and cannot be mapped to r ,
+we need to store values of first hasmap as keys of second hashmap to get check if any of the charcter of string s is mapped to two characters and hence is not isomorphic
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+      HashMap<Character, Character> smap = new HashMap<>();
+      HashMap<Character, Character> tmap = new HashMap<>();
+        
+      for(int i =0; i<s.length(); i++){ 
+        char a = s.charAt(i);
+        char b = t.charAt(i);
+        
+          if(!smap.containsKey(a)){
+              smap.put(a, b);
+          }
+          else{
+              if(!smap.get(a).equals(b)) return false;
+          }
+          if(! tmap.containsKey(b)){
+              tmap.put(b, a);
+          }
+          else{
+                if(tmap.get(b) != a) return false;    
+          }
+    }
+            
+        return true;
+    }
+}

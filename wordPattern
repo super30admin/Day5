@@ -1,0 +1,35 @@
+//time complexity: O(n)
+//space complexity: O(n)
+// we check if each character is mapped to only on word to cooresponding side of string
+// to check the the condition specified above we use two hashmap, so look up time to values of fisrt hashmaps comes to be O(1)
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        HashMap<Character, String> pmap = new HashMap<>();
+        HashMap<String, Character> smap = new HashMap<>();
+        
+        String[] words = str.split(" ");
+        if(pattern.length() != words.length) return false;
+        
+        for(int i =0; i<pattern.length(); i++){
+            char a = pattern.charAt(i);
+            String b = words[i];
+            
+            
+            if(!pmap.containsKey(a)){
+                pmap.put(a,b );
+            }
+            else{
+                if(!pmap.get(a).equals(b)) return false;
+            }
+            
+            if(!smap.containsKey(b)){
+                smap.put(b, a);
+            }
+            else{
+                if(!smap.get(b).equals(a)) return false;
+            }
+        }
+        return true;
+        
+    }
+}
