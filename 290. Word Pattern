@@ -1,0 +1,26 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        dict1 = {}
+        pat1 = [*pattern]
+        val = len(set(s))
+        str1 = s.split(" ")
+       
+        if len(pat1)!=len(str1):
+            return False
+       
+        if(len(set(pattern))!=len(set(str1))):
+            return False
+        
+        for i in range(len(pat1)):
+            if pat1[i] in dict1:
+                print(pat1[i],dict1,dict1[pat1[i]])
+                if dict1[pat1[i]] != str1[i]:
+                    return False
+            else:
+                dict1[pat1[i]] = str1[i]
+        
+        return True
+                
+                
+            
+        
