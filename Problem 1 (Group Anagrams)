@@ -1,0 +1,78 @@
+https://leetcode.com/problems/group-anagrams/submissions/
+
+
+1) FRIST APPROCH USING HASHMAP AND SORTING STRING AND USING AS KEY
+//Time : O(nklogn)
+// Space: O(n)
+// LeetCode :Yes
+
+class Solution {
+     public  String findKey(String str)
+        {
+            char [] arr = str.toCharArray();
+            Arrays.sort(arr);
+            
+            return new String(arr);
+       }
+    public List<List<String>> groupAnagrams(String[] strs) {
+       HashMap<String, List<String>> map1 = new HashMap<>();
+       List<List<String>> result = new ArrayList<>();
+           for(int i=0;i<strs.length;i++)
+        {
+            String key = findKey(strs[i]);
+            if(map1.containsKey(key))
+            {
+                map1.get(key).add(strs[i]);
+            }
+            else
+            {
+                map1.put(key, new ArrayList<String>());
+                map1.get(key).add(strs[i]);
+            }
+        }
+        result.addAll(map1.values());
+        return result;
+    }
+}
+
+2) Second Approch using Prime product of alphabets and using it as Key
+// Time :O(nK)
+//Space:O(nk)
+//LeetCode :Yes
+
+class Solution {
+    
+    public List<List<String>> groupAnagrams(String[] strs) {
+       HashMap<Double, List<String>> map1 = new HashMap<>();
+       List<List<String>> result = new ArrayList<>();
+           for(int i=0;i<strs.length;i++)
+        {
+            double key = primeProduct(strs[i]);// Prime product for hash key
+            if(map1.containsKey(key))// if the profuct(key) exists in Map then add the string in the List associated with key.
+            {
+                map1.get(key).add(strs[i]);
+            }
+            else
+            {
+                map1.put(key, new ArrayList<String>());// If key doesn't exits then create new List 
+                map1.get(key).add(strs[i]); // and the string in the newly created List
+            }
+        }
+  
+        return new ArrayList<>(map1.values()); // At end map the all data to List.
+    }
+    
+    public double primeProduct(String s)
+    {
+        double result =1;
+        int [] primes = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103};
+        
+        for(int i=0;i<s.length();i++)
+        {
+            char c= s.charAt(i);
+            result = result*primes[c-'a'];
+            
+        }
+        return result;
+    }
+}
