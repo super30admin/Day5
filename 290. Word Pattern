@@ -1,0 +1,17 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        s= s.split(' ');
+        if(len(pattern) != len(s)):
+            return False;
+        matchingdict = {}; used = set();
+        for i in range(len(pattern)):
+            if(pattern[i] not in matchingdict and s[i] not in used):
+                matchingdict[pattern[i]] = s[i];
+                used.add(s[i]);
+            elif(pattern[i] in matchingdict):
+                if(matchingdict[pattern[i]] != s[i]):
+                    return False;
+            elif(pattern[i] not in matchingdict and s[i] in used):
+                return False;
+        return True;
+        
