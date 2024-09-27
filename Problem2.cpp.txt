@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        map<char,char> store, store2;
+        unordered_set<char> res;
+        for(int i=0;i<s.size();i++){
+            if((store.find(s[i])!=store.end() && store[s[i]]!=t[i]) || (store.find(s[i])==store.end() && res.find(t[i])!=res.end() )) return false;
+            else{
+                store[s[i]] = t[i];
+                res.insert(t[i]);
+            }
+        }
+        return true;
+    }
+};

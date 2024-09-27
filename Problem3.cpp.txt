@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string str) {
+	map<string,char> store;
+    map<char, string> pat;
+        vector<string> words;
+	int spl = 0;
+	int pt = 0;
+	for(int i=0;i<str.size();i++){
+		if(str[i] == ' '){
+            words.push_back(str.substr(spl, i-spl));
+			spl = i+1;
+            pt++;
+		}
+	}   
+      words.push_back(str.substr(spl));
+    int i;
+    for(i=0;i<pattern.size() && i<words.size();i++){
+        if((store.find(words[i])!=store.end() && store[words[i]] != pattern[i]) || (pat.find(pattern[i])!=pat.end() && pat[pattern[i]] != words[i])  ){
+            return false;
+        }else{
+            store[words[i]] = pattern[i];
+            pat[pattern[i]]  = words[i];
+        }
+    }
+        if(i<pattern.size() || i<words.size()) return false;
+return true;
+}
+};
