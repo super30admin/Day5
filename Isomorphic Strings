@@ -1,0 +1,43 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        
+        // 1 HashMAp + 1 HashSet
+        if(s.length() != t.length())
+            return false;
+        
+        //Initialse the hashmap and hashset
+        
+        HashMap<Character,Character> sMap = new HashMap<>();
+        HashSet<Character> tSet = new HashSet<>();
+        
+        //Iterate through s and get the characters
+        for(int i=0;i<s.length();i++){
+            
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i);
+            
+            //check if the sMap contains sChar
+            if(sMap.containsKey(sChar)){
+                
+                //check if the mapping is wrong
+                if(sMap.get(sChar) != tChar){
+                    return false;
+                }
+            }
+                else{
+                    //Mapping Doesn't exist so map it
+                    sMap.put(sChar,tChar);
+                    
+                    //While doing this check if the tchar present in tset, already exists
+                    if(tSet.contains(tChar)){
+                        return false;
+                    }
+                    else{
+                        tSet.add(tChar);
+                    }
+                }
+            }
+        return true;
+        }
+        
+    }
