@@ -1,0 +1,81 @@
+//sample text
+
+
+//Time complexity : O(NKLOGK) where n is the input strs, k i the maximum length of the string
+//Space complexity O(NK)
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+         Map<String,List<String>> map = new HashMap<>();
+            for(String str : strs){
+                char[] c= str.toCharArray();
+                Arrays.sort(c);
+                String temp = Arrays.toString(c);
+                if(!map.containsKey(temp)){
+                    map.put(temp,new LinkedList<>());
+                }
+                map.get(temp).add(str);
+            }
+
+             return new ArrayList<>(map.values());
+    }
+
+
+
+
+//Time complexity: O(N)
+//Space complexity : O(N)
+
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character,Character> map = new HashMap<>();
+        for(int i=0;i<s.length();i++)
+        {
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
+            if(!map.containsKey(c1))
+            {
+                if(map.containsValue(c2))
+                    return false;
+                else
+                    map.put(c1,c2);
+            }
+            else if(map.get(c1)!=c2)
+                return false;       
+        }
+        return true;
+    }
+}
+
+
+
+//Time complexity : O(N)
+//Space complexity : O(M) numbeer of unique characters in the pattern and in string s
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        
+        Map<Character, String> map = new HashMap<>();
+        String[] words = s.split(" ");
+        
+        if(words.length != pattern.length())
+            return false;
+        
+        for(int i = 0; i < pattern.length(); i++) {
+            if(!map.containsKey(pattern.charAt(i))) {
+                if(map.containsValue(words[i]))
+                    return false;
+               map.put(pattern.charAt(i), words[i]);
+            }
+            else {
+                if(!words[i].equals(map.get(pattern.charAt(i))))
+                    return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+
+
+
