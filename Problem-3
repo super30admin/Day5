@@ -1,0 +1,38 @@
+//same solution as isomerphic strings using 2 hashmaps
+//time : O(n) where n is pattern size 
+//space : O(1) as we are storing strings of constant pattern size even in map2 which will be equal to 26 or 128 times; please review and let me know if I am thinking incorrect for the space complexity according to this code.
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+
+        HashMap<Character, String> map1 = new HashMap<>();
+        HashMap<String, Character> map2 = new HashMap<>();
+        String[] st= str.split(" ");
+        if(pattern.length() != st.length)
+            return false;
+        for(int i=0;i<pattern.length() ;i++)
+        {
+            char a = pattern.charAt(i);
+            String b = st[i];
+            if(!map1.containsKey(a))
+            {
+                map1.put(a,b);
+            }
+            else
+            {
+                if(!map1.get(a).equals(b))
+                    return false;
+            }
+            
+            if(!map2.containsKey(b))
+            {
+                map2.put(b,a);
+            }
+            else
+            {
+                if(map2.get(b)!=(a))
+                    return false;
+            }
+        }
+        return true;
+    }
+}

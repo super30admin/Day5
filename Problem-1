@@ -1,0 +1,21 @@
+//time : O(mlogn)*n
+//space : O(n) 
+//solution using hashmap
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+      List<List<String>> list = new ArrayList<List<String>>();
+        HashMap<String, List<String>> map = new HashMap<String,List<String>>();
+       for(String s: strs)
+       {
+           char[] c= s.toCharArray();
+           Arrays.sort(c);
+           if(!map.containsKey(String.valueOf(c)))
+           {
+               map.put(String.valueOf(c), new ArrayList<String>());
+           }
+         
+              map.get(String.valueOf(c)).add(s);   
+       }
+        return new ArrayList<>(map.values());
+    }
+}

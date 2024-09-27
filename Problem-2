@@ -1,0 +1,91 @@
+//using single map 
+//time : O(n*n) because containsValue seraches for n times to find value and its inside for loop 
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length())
+            return false;
+        HashMap<Character, Character> map = new HashMap<>();
+        for(int i=0;i<s.length() ;i++)
+        {
+            char a= s.charAt(i);
+            char b=t.charAt(i);
+            if(map.containsKey(a))
+            {
+                if(map.get(a)!=b) return false;
+            }
+            else
+            {
+              if(map.containsValue(b)) return false;
+              map.put(a,b);  
+            }
+        }
+        return true;
+    }
+    
+    
+    
+// }
+//using two maps
+//Time: O(n) coz we have for loop until size of string
+//spcae:  O(1) : since we are storing constant a to z : 26 chars at max
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length())
+            return false;
+        HashMap<Character, Character> map1 = new HashMap<>();
+        HashMap<Character, Character> map2 = new HashMap<>();
+        for(int i=0;i<s.length() ;i++)
+        {
+            char a= s.charAt(i);
+            char b= t.charAt(i);
+            if(!map1.containsKey(a))
+            {
+                map1.put(a,b);
+            }
+            else
+            {
+                if(map1.get(a)!= b)
+                    return false;
+            }
+            
+            if(!map2.containsKey(b))
+            {
+                map2.put(b,a);
+            }
+            else
+            {
+                if(map2.get(b)!= a)
+                    return false;
+            }
+        }
+        return true;
+    } 
+    
+}
+
+//third solution : using array as an index
+//time : O(n) , space : O(1)
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length())
+            return false;
+        //size 128 including capital chars as question did not mention 
+        int[] arr1 = new int[128];
+        int[] arr2 = new int[128];
+        
+        for(int i=0;i<s.length();i++)
+        {
+            int a= s.charAt(i);
+             int b= t.charAt(i);
+            if(arr1[a] == arr2[b])
+            {          
+                arr1[a] = i+1;
+                arr2[b] = i+1;
+            }
+               else
+                   return false;
+
+        }
+        return true;
+}
+}
