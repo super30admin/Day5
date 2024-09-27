@@ -1,0 +1,32 @@
+//tc - o(n)
+//sc - o(n)
+//leetcode - yes
+public boolean isIsomorphic(String s, String t) {
+        
+        //base case- if length is not same return false
+        if(s.length() != t.length()) return false;
+        
+        //a-> b and b-> a mapping 
+        HashMap<Character,Character> mapS = new HashMap<>();
+        HashMap<Character,Character> mapT = new HashMap<>();
+        
+        for(int i =0; i<s.length(); i++) {
+            char cs = s.charAt(i);
+            char ct = t.charAt(i);
+            //check if map contains key thn value and ct are same or not 
+            if(mapS.containsKey(cs)){
+                if(mapS.get(cs) != ct) return false;
+            } 
+            //add to map
+            else {
+                mapS.put(cs,ct);
+            }
+            //check if map contains key thn value and ct are same or not
+            if(mapT.containsKey(ct)) {
+                if(mapT.get(ct) != cs) return false;
+            } else {
+                mapT.put(ct,cs);
+            }
+        }
+        return true;
+    }

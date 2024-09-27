@@ -1,0 +1,25 @@
+public boolean wordPattern(String pattern, String s) {
+        
+        HashMap<Character,String> mapC = new HashMap<>();
+        HashMap<String,Character> mapS = new HashMap<>();
+        String [] strs = s.split(" ");
+        
+        if(strs.length != pattern.length()) return false;
+        
+        for(int i = 0; i< strs.length; i++) {
+            char c = pattern.charAt(i);
+            if(mapC.containsKey(c)) {
+                if(!(mapC.get(c)).equals(strs[i]))
+                    return false;
+            } else {
+                mapC.put(c,strs[i]);
+            }
+            if(mapS.containsKey(strs[i])) {
+                if(!mapS.get(strs[i]).equals(c))
+                    return false;
+            } else {
+                mapS.put(strs[i],c);
+            }
+        }
+        return true;
+    }
