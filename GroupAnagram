@@ -1,0 +1,27 @@
+// TC : o(n*(klogk)) 
+// SC : o(n) 
+// Leetcode result : Successfully submitted
+// No Issues in Leetcode.
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> result = new ArrayList<>();
+        if(strs == null || strs.length == 0 ) return result;
+
+        HashMap<String, List<String>>map = new HashMap<>();
+
+        for(String str:  strs) {
+            char[] sortedArr = str.toCharArray();
+            Arrays.sort(sortedArr);
+            String sortedString = String.valueOf(sortedArr);
+
+            if(!map.containsKey(sortedString)) {
+                map.put(sortedString, new ArrayList<>());
+            }
+
+            map.get(sortedString).add(str);
+        }
+
+        return new ArrayList<>(map.values());
+    }
+}
