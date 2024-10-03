@@ -1,0 +1,29 @@
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        """
+        :type pattern: str
+        :type s: str
+        :rtype: bool
+        """
+        words = s.split()
+        # If the pattern length and word count are different, they don't match
+        if len(words) != len(pattern):
+            return False
+
+        char_to_word = {}
+        word_to_char = {}
+        # Iterate over the pattern and the corresponding words together
+        for char, word in zip(pattern, words):
+            # If the character is already mapped to a different word,
+            # or the word is already mapped to a different character, return False
+            if (char in char_to_word and char_to_word[char] != word) or (
+                word in word_to_char and word_to_char[word] != char
+            ):
+                return False
+            char_to_word[char] = word
+            word_to_char[word] = char
+        return True
+
+
+# time complexity is O(N) where N is the length of the longer word
+# space complexity is O(N)
