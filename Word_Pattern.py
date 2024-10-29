@@ -1,3 +1,4 @@
+
 # Approach:
 # We use two hashmaps to maintain a bijective mapping: one from pattern to words and another from words to pattern.
 # As we iterate over both the pattern and the words in the string, we ensure that each letter in the pattern maps to a unique word and vice versa.
