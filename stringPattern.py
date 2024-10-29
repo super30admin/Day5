@@ -1,3 +1,8 @@
+# Time Complexity :O(n) for iteration zip
+# Space complexity :O(m+n) for pattern size and string size. Also s = s.split()
+# // Did this code successfully run on Leetcode : Yes
+# // Any problem you faced while coding this : used zip function alternative for java 
+
 # We will use a hashmap where we will use the 2 false conditions (if i not in hash1 but j not in hash2) and hash1 key is not equal to hash2 value
 # Base condition is size mismatch
 # add if not present 
