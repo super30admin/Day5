@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 /*
     Time complexity: O(n), where n is the length of the strings s and t.
                     The algorithm iterates through each character of both strings once (in the for loop),
