@@ -1,0 +1,17 @@
+# Approach:
+# 1. Use a dictionary to group words by their sorted version as the key (since anagrams have the same sorted characters).
+# 2. Iterate through the input list and append each word to the list corresponding to its sorted key in the dictionary.
+# 3. Return the grouped values from the dictionary as the output.
+
+def groupAnagrams(strs):
+    anagram_map = {}
+    for word in strs:
+        sorted_word = ''.join(sorted(word))
+        if sorted_word not in anagram_map:
+            anagram_map[sorted_word] = []
+        anagram_map[sorted_word].append(word)
+    return list(anagram_map.values())
+
+# Example usage:
+input_array = ["eat", "tea", "tan", "ate", "nat", "bat"]
+print(groupAnagrams(input_array))

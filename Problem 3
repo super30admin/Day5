@@ -1,0 +1,18 @@
+# Approach:
+# 1. Use two dictionaries to establish a bijection between characters in the pattern and words in the string.
+# 2. Split the string into words and check the mapping consistency for both pattern-to-word and word-to-pattern directions.
+# 3. Return False if any inconsistency is found or lengths do not match, otherwise return True.
+
+def wordPattern(pattern, str):
+    words = str.split()
+    if len(pattern) != len(words):
+        return False
+
+    char_to_word = {}
+    word_to_char = {}
+    for char, word in zip(pattern, words):
+        if (char in char_to_word and char_to_word[char] != word) or (word in word_to_char and word_to_char[word] != char):
+            return False
+        char_to_word[char] = word
+        word_to_char[word] = char
+    return True
