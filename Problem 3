@@ -1,4 +1,5 @@
-
+//time complexity : o(n)
+//space complexity: o(2n)
 // Using two hashmaps to store -  pattern to s and s to pattern.
 // And traverse through the pattern characters and see if both the maps containsKey, their previous value matches.
 
