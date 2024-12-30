@@ -1,0 +1,28 @@
+// time complexity - o(n)
+// space complexity - o(1)
+
+// creatign an integer array and saving the char value of each char in t to the postion of char value of s
+// and using boolean array to see if there is already an occurance of char of t when there is no mapping in integer array.
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+
+        int[] mappingArr = new int[256]; 
+        boolean[] boolArr = new boolean[256]; 
+
+        for (int i = 0; i < s.length(); i++) {
+            if (mappingArr[s.charAt(i)] == 0) {
+                if (boolArr[t.charAt(i)]) {
+                    return false;
+                }
+                mappingArr[s.charAt(i)] = t.charAt(i); 
+                boolArr[t.charAt(i)] = true;    
+            } 
+            if (mappingArr[s.charAt(i)] != t.charAt(i)) {
+               return false;
+
+                }
+            }
+        return true;      
+    }
+}
