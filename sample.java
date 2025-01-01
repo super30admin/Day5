@@ -59,3 +59,48 @@ class Solution {
 
     }
 }
+
+
+//word pattern
+
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+
+        Map<Character,String> maps = new HashMap<Character,String>();
+        Map<String,Character> mapt = new HashMap<String,Character>();
+
+        if (s.length() == 0 && pattern.length() == 0) {
+            return true;
+        }
+        if (s.length() == 0 && pattern.length() != 0) {
+            return false;
+        }
+        if (s.length() != 0 && pattern.length() == 0) {
+            return false;
+        }
+        String[] arr = s.split(" ");
+
+        if (pattern.length() != arr.length) {
+            return false;
+        }
+        for (int i=0;i<arr.length;i++) {
+            if (!maps.containsKey(pattern.charAt(i))) {
+                maps.put(pattern.charAt(i), arr[i]);
+                System.out.println(maps);
+            } else {
+                if (!arr[i].equals(maps.get(pattern.charAt(i)))) {
+                    return false;
+                }
+            }
+            if (!mapt.containsKey(arr[i])) {
+                mapt.put(arr[i], pattern.charAt(i));
+            } else {
+                if (mapt.get(arr[i]) != pattern.charAt(i)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+        
+    }
+}
