@@ -24,4 +24,38 @@ class Solution {
 }
 
 
+//Isomorphic strings
 
+// Time complexity:O(n)
+// Space complexity:Constant time 
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+    
+    if (s.length() != t.length()) {
+        return false;
+    }
+    Map<String, Character> mapst = new HashMap<String, Character>();
+
+    for (int i=0;i<s.length();i++) {
+        String sc = "s" + "_" + s.charAt(i);
+        if (!mapst.containsKey(sc)){
+            mapst.put(sc , t.charAt(i)) ;
+        } else {
+            if (mapst.get(sc) != t.charAt(i)) {
+                return false;
+            }
+        }
+        sc = "t" + "_" +t.charAt(i);
+        if (!mapst.containsKey(sc)) {
+            mapst.put(sc , s.charAt(i)) ;
+        } else {
+            if (mapst.get(sc)!= s.charAt(i)) {
+                return false;
+            }
+        }
+    }
+    return true;
+
+
+    }
+}
