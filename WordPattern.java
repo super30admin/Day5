@@ -20,21 +20,27 @@ public class WordPattern {
         HashMap<Character, String> charToWord = new HashMap<>();
         HashMap<String, Character> wordToChar = new HashMap<>();
 
-        for (int i = 0; i < words.length; i++) {
+        for (int i = 0; i < pattern.length(); i++) {
             char ch = pattern.charAt(i);
             String word = words[i];
+
+            // Check mapping from char to word
             if (charToWord.containsKey(ch)) {
-                if (wordToChar.containsKey(word)) {
-                    if (!charToWord.get(ch).equals(word) && !wordToChar.get(word).equals(ch))
-                        return false;
-                } else {
+                if (!charToWord.get(ch).equals(word)) {
                     return false;
                 }
+            } else {
+                charToWord.put(ch, word);
             }
-            charToWord.put(ch, word);
-            if (wordToChar.containsKey(word) && !wordToChar.get(word).equals(ch))
-                return false;
-            wordToChar.put(word, ch);
+
+            // Check mapping from word to char
+            if (wordToChar.containsKey(word)) {
+                if (!wordToChar.get(word).equals(ch)) {
+                    return false;
+                }
+            } else {
+                wordToChar.put(word, ch);
+            }
         }
 
         return true;
