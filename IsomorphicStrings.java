@@ -40,13 +40,4 @@ public class IsomorphicStrings {
             return true;
         }
 
-        public static void main(String[] args) {
-            IsomorphicStrings solution = new IsomorphicStrings();
-
-            // Test cases
-            System.out.println(solution.isIsomorphic("egg", "add")); // Output: true
-            System.out.println(solution.isIsomorphic("foo", "bar")); // Output: false
-            System.out.println(solution.isIsomorphic("paper", "title")); // Output: true
-        }
-
 }
