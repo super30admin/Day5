@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 /**
  * Time Complexity: O(N)
- * Space complexity: O(1)
+ * Space complexity: O(N)
  * Ran on leetcode?  Yes
  * Problems faced? No
  */
@@ -12,7 +12,7 @@ public class WordPattern {
      * Similar to isomporphic string approach
      */
     public boolean wordPattern(String pattern, String s) {
-        String[] words = s.split(" ");
+        String[] words = s.split(" "); // additional space of N used here
         if (pattern.length() != words.length) {
             return false;
         }
