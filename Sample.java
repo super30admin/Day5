@@ -59,7 +59,7 @@ class Solution {
 //Problem - 2
 
 // Time Complexity : 0(n) n=length of input strings
-// Space Complexity : 0(n)
+// Space Complexity : 0(1)
 // Did this code successfully run on Leetcode : yes
 // Any problem you faced while coding this : no
 
@@ -104,7 +104,7 @@ and the corresponding map of t in a hashset
 */
 
 //TC:0(N) N=length of word
-//SC:0(N)
+//SC:0(1)
 import java.util.Map.*;
 class Solution {
     public boolean isIsomorphic(String s, String t) {
@@ -139,3 +139,72 @@ class Solution {
     }
 }
 
+/*
+Intuition is to store the mapping of every char in s in a hashMap
+and the corresponding map of t in a hashset with out using entry set
+*/
+
+//TC:0(N) N=length of word
+//SC:0(1)
+import java.util.Map.*;
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length()){
+            return false;
+        }
+        HashMap<Character,Character> sMap=new HashMap<>();
+        HashSet<Character> tMap=new HashSet<>();
+        for(int i=0;i<s.length();i++){
+
+            if(!sMap.containsKey(s.charAt(i))){
+                sMap.put(s.charAt(i),t.charAt(i));
+                if(tMap.contains(t.charAt(i))){
+                    return false;
+                }
+                tMap.add(t.charAt(i));
+            }else{
+                if(sMap.get(s.charAt(i))!=t.charAt(i)){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+}
+
+/*********************** PROBLEM-3 ***********************/
+
+// Time Complexity : 0(n)
+// Space Complexity : 0(n)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+/*Intuition is to use a hashset to store pattern to s mapping and
+use a hashset to store the s word seen
+*/
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String[] sWords=s.split(" ");
+        if(pattern.length()!=sWords.length){
+            return false;
+        }
+        HashMap<Character, String> patternMap=new HashMap<>();
+        HashSet<String> sMap= new HashSet<>();
+        for(int i=0;i<pattern.length();i++){
+            if(!patternMap.containsKey(pattern.charAt(i))){
+                patternMap.put(pattern.charAt(i),sWords[i]);
+                if(sMap.contains(sWords[i])){
+                    return false;
+                }
+                sMap.add(sWords[i]);
+            }else{
+                if(!patternMap.get(pattern.charAt(i)).equals(sWords[i])){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+}
