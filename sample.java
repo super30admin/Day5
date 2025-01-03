@@ -61,8 +61,8 @@ class Solution {
 }
 
 
-//word pattern
-//Time complexity :O(n)
+//word pattern 
+//Time complexity :O(nk) /// split of array of strings using space delimiter
 //Space complexity:O(n)
 class Solution {
     public boolean wordPattern(String pattern, String s) {
