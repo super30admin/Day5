@@ -1,7 +1,7 @@
 
 /**
- * Time Complexity: O(n + k) where n is the length of string s and k is the length of pattern 
- * Space Complexity: O(n) where n is the length of string s
+ * Time Complexity: O(nk) where n is the length of string s and k is the length of pattern 
+ * Space Complexity: O(n) where n is the number of strings
  * 
  * Approach: We maintain 2 hashmaps. One to create character to word mapping,
  * Other mapping for word to character mapping.
