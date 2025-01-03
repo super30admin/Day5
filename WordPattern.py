@@ -13,8 +13,6 @@
 # - if not, we return false
 # - similarly, checking the mapping of str - > pattern in strMap
 
-
-
 class Solution(object):
     def wordPattern(self, pattern, s):
         """
