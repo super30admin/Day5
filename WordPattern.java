@@ -1,3 +1,16 @@
+// Time Complexity : O (nk) where n = number of words in pattern, k = avg length of words
+// Space Complexity : O (n) where n = number of words/letters
+// Did this code successfully run on Leetcode : Yes
+
+
+// Your code here along with comments explaining your approach
+/*
+ * Similar to isomorphic strings
+ * Split the pattern into a word array.
+ * Maintain two maps, letter <-> word and word <-> letter
+ * In case of a mismatch at any time, return false
+ * Else continue adding and return true.
+ */
 import java.util.HashMap;
 import java.util.Map;
 
