@@ -1,0 +1,9 @@
+Time Complexity : O(n)
+Space Complexity : O(n)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+I checked if the length of the word and pattern are same. If they are not, I am returning false and if they are, I traverse through
+the pair of characters at each index and check if 2 characters are being mapped to same character ot a character is mapping to more than 1 character.

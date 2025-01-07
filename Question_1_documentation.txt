@@ -1,0 +1,9 @@
+Time Complexity : O(n)
+Space Complexity : O(n)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+I converted all the strings to a compressed form, which is of the form of character+frequency in string for all characters occuring more than 0 times
+then I stored this compressed canonical form in a hashmap and collected all of the words which have the same canonical form
