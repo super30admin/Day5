@@ -3,6 +3,7 @@
 // Did this code successfully run on Leetcode : yes
 // Any problem you faced while coding this : no
 
+// we take 2 hash maps and map both the strings to each other seperately
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
