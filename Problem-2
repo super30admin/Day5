@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/isomorphic-strings/
+//Time Complexity : O(n) where n is the length of the first string
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+// Declare two hash maps that store a pair of characters. 
+// The maps contains the characters of one string and the characters is mapped to in the other string. 
+// While iterating, if a character is already mapped and it is not equal to the character we are currently mapping then return false
+// or else return true at the end
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        int n = s.size(); int m = t.size();
+        if(n!=m) return false;
+        unordered_map<char,char> mp1,mp2;
+        for(int i=0; i<n; i++){
+            if(mp1[s[i]] && mp1[s[i]] != t[i]) return false;
+            if(mp2[t[i]] && mp2[t[i]] != s[i]) return false;
+            mp1[s[i]] = t[i];
+            mp2[t[i]] = s[i];
+        }
+        return true;
+    }
+};
