@@ -1,9 +1,6 @@
-# https://leetcode.com/problems/word-pattern-ii/description/
 
-# Problem 3: Word Pattern II
-
-# Time Complexity: O(n*m)
-# Space Complexity: O(n*m)
+# Time Complexity: O(n + m) where n is the length of the pattern and m is the length of the string
+# Space Complexity: O(n + m) where n is the length of the pattern and m is the length of the string
 
 # Approach:
 # The intuition is to create a one-to-one mapping between characters in the pattern and words in the string. 
