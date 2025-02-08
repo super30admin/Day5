@@ -1,3 +1,5 @@
+#two maps one for first to second and another for second to first is assigned and if the mapping has changed thee pattern it returns false
+
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         sMap = {}
