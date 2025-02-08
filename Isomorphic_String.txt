@@ -1,0 +1,23 @@
+#two maps one for first to second and another for second to first is assigned and if the mapping has changed thee pattern it returns false
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        sMap = {}
+        tMap = {}
+        for i in range(len(s)):
+            sChar = s[i]
+            tChar = t[i]
+            if sChar in sMap:
+                if sMap[sChar] != tChar:
+                    return False
+            else:
+                sMap[sChar] = tChar
+            if tChar in tMap:
+                if tMap[tChar] != sChar:
+                    return False
+            else:
+                tMap[tChar] = sChar
+        return True
+
+#time = O(n)
+#Space = O(1)

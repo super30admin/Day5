@@ -1,0 +1,28 @@
+#by creating two maps and matching the pattern with word and viseversa. if the pattern mismatches then it will return false.
+
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        words = s.split()
+
+        if len(pattern) != len(words):
+            return False
+
+        patternToWords = {}
+        wordToPattern = {}
+        for p,w in zip(pattern,words):
+            if p in patternToWords:
+                if patternToWords[p] != w:
+                    return False
+            else:
+                patternToWords[p] = w
+            if w in wordToPattern:
+                if wordToPattern[w] != p:
+                    return False
+            else:
+                wordToPattern[w] = p
+        return True    
+
+#time = O(n)
+#Space = O(n)
+                
+
