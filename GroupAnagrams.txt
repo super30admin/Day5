@@ -1,0 +1,22 @@
+#Take prime numbers to the length of alphabets and by matching the index the letters get assigned to the prime number and multiplication is done in the loop for each element in #string. If prime number matches it is assigned to same map or else new map has been created.
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        map = {}
+        for astr in strs:
+            primeProduct = self.primeProduct(astr)
+            if primeProduct not in map:
+                map[primeProduct] = []
+            map[primeProduct].append(astr)
+        return list(map.values())
+
+    def primeProduct(self, s : str) -> int:
+        primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101]
+        result = 1
+        for i in range(len(s)):
+            c = s[i]
+            result = result * primes[ord(c) - ord('a')]
+        return result
+
+#time = O(nk) n = len of list k = avg len of str
+#space = O(nk)
